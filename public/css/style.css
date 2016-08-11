@@ -1,0 +1,50 @@
+.header {
+  display: flex;
+  align-items: center;
+}
+h3{
+  font-size: 50px;
+  font-family: fantasy;
+  color: #0da866;
+  padding-left: 30px;
+}
+body{
+  background-image: url(https://www.walldevil.com/wallpapers/a49/desktop-wallpaper-pixel-wallcoo-concepts-business-wallpapers-design-large.jpg);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-size-height: 80%;
+
+}
+.criteria-image {
+  max-width: 70%;
+  margin: 0 auto;
+  background-position-x: 100%;
+  background-position-y: -115%;
+}
+.nav>li>a:focus, .nav>li>a:hover {
+  color: #4181c8;
+}
+.nav-pills>li:focus{
+  background-color: #4181c8;
+}
+.nav-pills>li>a{
+  color: white;
+  font-size: 20px;
+}
+.homebutton{
+  background-color: #0da866;
+  color: white;
+  font-size: 18px;
+}
+.homebutton:hover {
+  color: black;
+}
+.started {
+    margin-top: 25%;
+}
+.mywell{
+  background-color: white;
+}
+.graph{
+
+}

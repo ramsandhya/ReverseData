@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html ng-app="reverseDataApp">
+  <head>
+    <meta charset="utf-8">
+    <title>Reverse Data</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="/css/style.css">
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row header">
+        <div class="col col-xs-3">
+          <h3>ReverseData.IO</h3>
+        </div>
+      </div>
+      <div class="row navigation">
+        <div class="col col-xs-12">
+          <ul class="nav nav-pills nav-justified" >
+            <li role="presentation" ng-class="{active: activetab }"><a href="#/">Home</a></li>
+            <li role="presentation" ng-class="{active: activetab }"><a href="#/criteria">Criteria</a></li>
+            <li ng-click="createData()" role="presentation" ng-class="{active: activetab }"><a href="#/edit">Create Data</a></li>
+            <li role="presentation" ng-class="{active: activetab }"><a href="#/contactus">Contact us</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <ng-view></ng-view>
+
+    </div>
+
+    <script src="js/angular.js"></script>
+    <script src="js/angular-route.js"></script>
+    <script src="js/client.js"></script>
+  </body>
+</html>
