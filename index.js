@@ -267,8 +267,9 @@ var createOpportunities = function (accessToken, instanceUrl) {
             console.log("Created record id : " + resultData[i].id);
           }
         }
+        results = resultData;
       });
-     results = resultData;
+
   });
   return results;
 };
