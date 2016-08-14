@@ -250,8 +250,6 @@ app.post('/generate', function(req, res){
 // Get authz url and redirect to it.
 //
 var createOpportunities = function (accessToken, instanceUrl) {
-  accessToken = sfdcConn.accessToken;
-  instanceUrl = sfdcConn.instanceUrl;
   var results = [];
   Opportunity.find({})
   .then(function(opportunityArray) {
