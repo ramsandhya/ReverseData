@@ -167,6 +167,20 @@ reverseDataApp.controller('CriteriaController', function($scope, $http, $locatio
           console.log(err);
         })
       }
+      $scope.pushData = function(criteriaId){
+        http.post('/push',{
+          criteriaId: criteriaId
+        })
+        .then(function(response) {
+          if (response.status === 200) {
+            // user successfully created
+            console.log("Yay");
+          }
+        })
+        .catch(function(err) {
+          console.log(err);
+        })
+      }
 });
 
   // // if they've registered and clicked the login button, redirect to the login page

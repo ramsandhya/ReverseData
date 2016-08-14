@@ -5,6 +5,21 @@ mongoose.Promise = Promise;
 var bodyParser = require('body-parser');
 var randtoken = require('rand-token');
 var bcrypt = Promise.promisifyAll(require('bcrypt'));
+var sf = require('node-salesforce');
+
+var oauth2 = new sf.OAuth2({
+  // you can change loginUrl to connect to sandbox or prerelease env.
+  //
+  // OAuth2 client information can be shared with multiple connections.
+  //
+  // loginUrl : 'https://test.salesforce.com',
+  // clientId : '<your Salesforce OAuth2 client ID is here>',
+  // clientSecret : '<your Salesforce OAuth2 client secret is here>',
+  // redirectUri : '<callback URI is here>'
+  clientId : process.env.CLIENT_ID,
+  clientSecret : process.env.CLIENT_SECRET,
+  redirectUri : process.env.REDIRECT_URI
+});
 
 var app = express();
 
@@ -211,6 +226,30 @@ app.post('/generate', function(req, res){
     });
 });
 
+// Code used from this link:
+// https://www.npmjs.com/package/node-salesforce
+//
+// Get authz url and redirect to it.
+//
+app.get('/push', function(req, res) {
+  res.redirect(oauth2.getAuthorizationUrl({ scope : 'api id web' }));
+});
+
+app.get('/oauth2/callback', function(req, res) {
+  var conn = new sf.Connection({ oauth2 : oauth2 });
+  var code = req.param('code');
+  conn.authorize(code, function(err, userInfo) {
+    if (err) { return console.error(err); }
+    // Now you can get the access token, refresh token, and instance URL information.
+    // Save them to establish connection next time.
+    console.log(conn.accessToken);
+    console.log(conn.refreshToken);
+    console.log(conn.instanceUrl);
+    console.log("User ID: " + userInfo.id);
+    console.log("Org ID: " + userInfo.organizationId);
+    // ...
+  });
+});
 
 // app.get('/', function(request, response) {
 //   response.render('criteria.html', {
