@@ -7,6 +7,14 @@ var randtoken = require('rand-token');
 var bcrypt = Promise.promisifyAll(require('bcrypt'));
 var sf = require('node-salesforce');
 
+mongoose.connect(process.env.MONGODB_URI);
+var SFDCConnection = mongoose.model('SFDCConnection',{
+  accessToken: { type: String, required: true },
+  instanceUrl: { type: String, required: true },
+  userId: { type: String, required: true },
+  orgId: { type: String, required: true }
+});
+
 var oauth2 = new sf.OAuth2({
   // you can change loginUrl to connect to sandbox or prerelease env.
   //
@@ -25,12 +33,13 @@ var oauth2 = new sf.OAuth2({
 var app = express();
 
 app.use(bodyParser.json());
+app.use(function (req, res, next) {
+
+});
 
 app.set('port', (process.env.PORT || 3000));
 // app.use(express.static(__dirname + '/ReverseData'));
 app.use(express.static('public'));
-
-mongoose.connect(process.env.MONGODB_URI);
 
 var User = mongoose.model('User', {
   _id: { type: String, required: true },
@@ -55,8 +64,13 @@ var Criteria = mongoose.model('Criteria',{
 });
 
 var Opportunity = mongoose.model('Opportunity', {
-  amountTo: { type: Number, required: true },
-  numberOfRecords: { type: Number }
+  Account: { type: String, required: true },
+  Amount: { type: Number, required: true },
+  CloseDate: { type: Date, required: true },
+  Name: { type: String, required: true },
+  Stage: { type: String, required: true },
+  CreatedDate: { type: Date, required: true },
+  LastModifiedDate: { type: Date, required: true }
 });
 
 // handle signups
@@ -202,7 +216,13 @@ app.post('/generate', function(req, res){
             if (criteria.chartType === "Linear") {
               criteria.amountFrom += increment;
               list.push({
-                amountTo: criteria.amountFrom
+                Account: '00141000002gC3Q',
+                Amount: criteria.amountFrom,
+                CloseDate: new Date(),
+                Name: 'Opportunity Name ' + i,
+                Stage: 'Closed/Won',
+                CreatedDate: new Date(),
+                LastModifiedDate: new Date()
               });
             }
           }
@@ -232,46 +252,84 @@ app.post('/generate', function(req, res){
 //
 // Get authz url and redirect to it.
 //
+var createOpportunities = function (accessToken, instanceUrl) {
+  accessToken = sfdcConn.accessToken;
+  instanceUrl = sfdcConn.instanceUrl;
+  Opportunity.find({})
+  .then(function(opportunityArray) {
+    var conn = new sf.Connection({
+      instanceUrl: instanceUrl,
+      accessToken: accessToken
+     });
+    conn.sobject("Opportunity").create(opportunityArray,function(err, results) {
+      if (err) { return console.error(err); }
+      for (var i=0; i < results.length; i++) {
+        if (results[i].success) {
+          console.log("Created record id : " + results[i].id);
+        }
+      });
+      return results;
+  })
+};
+
 app.get('/push', function(req, res) {
-  var conn = new sf.Connection({ oauth2 : oauth2 });
-  var code = req.param('code');
+  var accessToken;
+  var instanceUrl;
   var results;
-  conn.login(process.env.SFDC_USERNAME, process.env.SFDC_PWD, function(err, userInfo) {
-    if (err) { return console.error(err); }
-    // Now you can get the access token, refresh token, and instance URL information.
-    // Save them to establish connection next time.
-    console.log(conn.accessToken);
-    console.log(conn.refreshToken);
-    console.log(conn.instanceUrl);
-    console.log("User ID: " + userInfo.id);
-    console.log("Org ID: " + userInfo.organizationId);
-    // ...
-    results = {
-      accessToken: conn.accessToken,
-      refreshToken: conn.refreshToken,
-      instanceUrl: conn.instanceUrl,
-      userId: userInfo.id,
-      orgId: userInfo.organizationId
-    }
+  SFDCConnection.findOne ({})
+  .then(function(sfdcConn) {
+    // if sfdcConn isn't found
+    if (!sfdcConn) {
+      var conn = new sf.Connection({ oauth2 : oauth2 });
+      conn.login(process.env.SFDC_USERNAME, process.env.SFDC_PWD, function(err, userInfo) {
+        if (err) { return console.error(err); }
+          accessToken = conn.accessToken;
+          instanceUrl = conn.instanceUrl;
+
+          SFDCConnection.create( {
+            accessToken: conn.accessToken,
+            refreshToken: conn.refreshToken,
+            instanceUrl: conn.instanceUrl,
+            userId: userInfo.id,
+            orgId: userInfo.organizationId
+          })
+          .then(function(sfdcConn){
+            results = createOpportunities(accessToken, instanceUrl);
+          })
+          .catch(function(err){
+            console.log(err);
+            res.json({ "status": "fail", "message": err.message });
+          });
+      } else {
+        // compare submitted password with encrypted password in database
+         results = createOpportunities(accessToken, instanceUrl);
+      }
+    });
+    res.json({status: "OK", result: results});
+  })
+  .catch(function(err){
+    console.log(err);
+    res.json({ "status": "fail", "message": err.message });
   });
-  return res.json({status: "OK", result: results});
+
+
 });
 
-app.get('/oauth2/callback', function(req, res) {
-  var conn = new sf.Connection({ oauth2 : oauth2 });
-  var code = req.param('code');
-  conn.authorize(code, function(err, userInfo) {
-    if (err) { return console.error(err); }
-    // Now you can get the access token, refresh token, and instance URL information.
-    // Save them to establish connection next time.
-    console.log(conn.accessToken);
-    console.log(conn.refreshToken);
-    console.log(conn.instanceUrl);
-    console.log("User ID: " + userInfo.id);
-    console.log("Org ID: " + userInfo.organizationId);
-    // ...
-  });
-});
+// app.get('/oauth2/callback', function(req, res) {
+//   var conn = new sf.Connection({ oauth2 : oauth2 });
+//   var code = req.param('code');
+//   conn.authorize(code, function(err, userInfo) {
+//     if (err) { return console.error(err); }
+//     // Now you can get the access token, refresh token, and instance URL information.
+//     // Save them to establish connection next time.
+//     console.log(conn.accessToken);
+//     console.log(conn.refreshToken);
+//     console.log(conn.instanceUrl);
+//     console.log("User ID: " + userInfo.id);
+//     console.log("Org ID: " + userInfo.organizationId);
+//     // ...
+//   });
+// });
 
 // app.get('/', function(request, response) {
 //   response.render('criteria.html', {
