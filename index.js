@@ -255,21 +255,26 @@ app.post('/generate', function(req, res){
 var createOpportunities = function (accessToken, instanceUrl) {
   accessToken = sfdcConn.accessToken;
   instanceUrl = sfdcConn.instanceUrl;
+  var results = [];
   Opportunity.find({})
   .then(function(opportunityArray) {
     var conn = new sf.Connection({
       instanceUrl: instanceUrl,
       accessToken: accessToken
      });
-    conn.sobject("Opportunity").create(opportunityArray,function(err, results) {
-      if (err) { return console.error(err); }
-      for (var i=0; i < results.length; i++) {
-        if (results[i].success) {
-          console.log("Created record id : " + results[i].id);
+    conn.sobject("Opportunity").create(
+        opportunityArray,
+        function(err, resultData) {
+        if (err) { return console.error(err); }
+        for (var i=0; i < resultData.length; i++) {
+          if (resultData[i].success) {
+            console.log("Created record id : " + resultData[i].id);
+          }
         }
       });
-      return results;
-  })
+     results = resultData;
+  });
+  return results;
 };
 
 app.get('/push', function(req, res) {
@@ -282,7 +287,9 @@ app.get('/push', function(req, res) {
     if (!sfdcConn) {
       var conn = new sf.Connection({ oauth2 : oauth2 });
       conn.login(process.env.SFDC_USERNAME, process.env.SFDC_PWD, function(err, userInfo) {
-        if (err) { return console.error(err); }
+        if (err) { res.json({ "status": "fail", "message": err.message });
+        } else {
+          // compare submitted password with encrypted password in database
           accessToken = conn.accessToken;
           instanceUrl = conn.instanceUrl;
 
@@ -300,12 +307,12 @@ app.get('/push', function(req, res) {
             console.log(err);
             res.json({ "status": "fail", "message": err.message });
           });
-      } else {
-        // compare submitted password with encrypted password in database
-         results = createOpportunities(accessToken, instanceUrl);
-      }
-    });
-    res.json({status: "OK", result: results});
+          res.json({status: "OK", result: results});
+        }
+      });
+    } else {
+      results = createOpportunities(sfdcConn.accessToken, sfdcConn.instanceUrl);
+    }
   })
   .catch(function(err){
     console.log(err);
