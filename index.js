@@ -253,7 +253,7 @@ var createOpportunities = function (accessToken, instanceUrl) {
   var results = [];
   Opportunity.find({})
   .then(function(opportunityArray) {
-    var myOpportunityArray = JSON.stringify(opportunityArray);
+    var myOpportunityArray = JSON.parse(JSON.stringify(opportunityArray));
     var conn = new sf.Connection({
       instanceUrl: instanceUrl,
       accessToken: accessToken
