@@ -233,8 +233,8 @@ app.post('/generate', function(req, res){
 //
 app.get('/push', function(req, res) {
   res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
-  res.redirect(oauth2.getAuthorizationUrl({ scope : 'api id web' }));
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  res.redirect(oauth2.getAuthorizationUrl({ scope : 'api' }));
 });
 
 app.get('/oauth2/callback', function(req, res) {
