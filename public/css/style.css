@@ -1,19 +1,36 @@
+@media (max-width: @screen-xs) {
+    body{font-size: 10px;}
+}
+
+@media (max-width: @screen-sm) {
+    body{font-size: 14px;}
+}
+
+h5{
+    font-size: 1.4em;
+}
 .header {
-  display: flex;
   align-items: center;
 }
+
 h3{
   font-size: 50px;
   font-family: fantasy;
   color: #0da866;
   padding-left: 30px;
 }
-body{
-  background-image: url(https://www.walldevil.com/wallpapers/a49/desktop-wallpaper-pixel-wallcoo-concepts-business-wallpapers-design-large.jpg);
-  background-repeat: no-repeat;
-  background-size: 100%;
-  background-size-height: 80%;
+h4{
+  color: white;
+}
+.edit{
+  color: #0da866;
+  font-size: 25px;
+}
 
+body{
+  background-image: url("http://whoisgarybledsoe.com/wp-content/uploads/2014/04/business-growth-vector-background-free.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 .criteria-image {
   max-width: 70%;
@@ -22,14 +39,15 @@ body{
   background-position-y: -115%;
 }
 .nav>li>a:focus, .nav>li>a:hover {
-  color: #4181c8;
+  color: #0da866;
 }
 .nav-pills>li:focus{
-  background-color: #4181c8;
+  background-color: blue;
 }
 .nav-pills>li>a{
-  color: white;
+  color: orange;
   font-size: 20px;
+  text-align: justify;
 }
 .homebutton{
   background-color: #0da866;
@@ -39,12 +57,40 @@ body{
 .homebutton:hover {
   color: black;
 }
-.started {
-    margin-top: 25%;
+.formInput {
+  padding: 0.5%;
+  border-radius: 5px;
+}
+.started{
+  padding-top: 5%;
 }
 .mywell{
   background-color: white;
+  overflow-x: scroll;
+  height: 430px;
 }
-.graph{
-
+.childwell{
+  background-color: #fff9f2;
+}
+.criteriawell{
+  background-color: transparent;;
+  overflow-x: scroll;
+  height: 420px;
+  border: 3px solid orange;
+}
+.criteriaList{
+  position: fixed;
+}
+.label{
+  color: black;
+  font-size: 16px;
+}
+h2{
+  color: #0da866;
+}
+.registerwell{
+  width: 372px;
+  background-color: transparent;
+  border: 2px solid orange;
+  border-radius: 10px;
 }

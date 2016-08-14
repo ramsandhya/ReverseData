@@ -1,0 +1,100 @@
+<div class="row">
+  <div class="col col-xs-12 text-center">
+    <div class="well mywell">
+      <div class="row">
+        <div class="col col-xs-6">
+          <h4>Set the criteria</h4>
+          <!-- Account section start -->
+          <div class="row">
+            <p>Account</p>
+            <div class="col col-xs-6 text-right">
+              <p>Account Name</p>
+            </div>
+            <div class="col col-xs-6 text-left">
+              <input type="text" name="accountname" value="Account Name">
+            </div>
+          </div>
+          <!-- Account Section end -->
+          <div class="row">
+            <p>Contact</p>
+            <div class="col col-xs-6 text-right">
+              <p>First Name</p>
+            </div>
+            <div class="col col-xs-6 text-left">
+              <input type="text" name="firstname" value="First Name">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col col-xs-6 text-right">
+              <p>Last Name</p>
+            </div>
+            <div class="col col-xs-6 text-left">
+              <input type="text" name="lastname" value="Last Name">
+            </div>
+          </div>
+
+          <div class="row">
+            <p>Product</p>
+            <div class="col col-xs-6 text-right">
+              <p>Industry</p>
+            </div>
+            <div class="col col-xs-6 text-left">
+              <select name="prodIndustry" ng-model="prodIndustry" required>
+                <option value="insurance">Insurance</option>
+                <option value="finance">Finance<e/option>
+                <option value="retail">Retail</option>
+                <option value="hitech">Hi-Tech</option>
+                <option value="Pharmaceutical">Pharmaceutical</option>
+                <option value="hospitality">Hospitality</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col col-xs-6 text-right">
+              <p>Unit of measurement</p>
+            </div>
+            <div class="col col-xs-6 text-left">
+              <select name="prodUnit" ng-model="prodUnit" required>
+                <option value="pounds">Pounds</option>
+                <option value="pieces">Pieces<e/option>
+                <option value="kilos">Kilos</option>
+                <option value="number">Number</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col col-xs-6 text-right">
+              <p>Opprtunity Stage</p>
+            </div>
+            <div class="col col-xs-6 text-left">
+              <select name="oppstage" ng-model="opp" required>
+                <option value="contacted">Contacted</option>
+                <option value="scheduled">Demo Scheduled<e/option>
+                <option value="proposal">Proposal Presented</option>
+                <option value="negotiation">Negotiation Started</option>
+                <option value="signed">Contract Signed</option>
+                <option value="won">Closed-Won</option>
+                <option value="lost">Closed-Lost</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col col-xs-6 text-right">
+              <p>Chart</p>
+            </div>
+            <div class="col col-xs-6 text-left">
+              <select name="chart" ng-model="chart" required>
+                <option value="parabolic">Parabolic</option>
+                <option value="exponential">Exponential<e/option>
+              </select>
+            </div>
+          </div>
+          <!-- Product section ends -->
+        </div>
+        <div class="col col-xs-6 graph">
+          <img src="http://aspire.sharesinv.com.s3-ap-southeast-1.amazonaws.com/wp-content/uploads/2016/01/18104700/img_471x347_blue_colored_chart_arrow_up-471x347.png" class="img-responsive criteria-image">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

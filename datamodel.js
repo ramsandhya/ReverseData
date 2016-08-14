@@ -1,6 +1,7 @@
 Static data :-
   Account
     ID (Auto)
+    Industry
     Account Name (Business Name) No Repeat
   Contact
     ID (Auto)

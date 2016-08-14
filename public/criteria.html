@@ -1,0 +1,101 @@
+
+<div class="row">
+  <div class="col col-xs-8 text-center">
+    <h4 class="edit">Criteria List</h4>
+    <div class="well mywell criteriawell">
+
+      <div class="well childwell" ng-repeat="opportunity in opportunities">
+        <div class="row" >
+          <div class="col col-xs-4 text-right">
+            <p>Criteria Name</p>
+          </div>
+          <button ng-click="createCriteria()" class="homebutton btn" >Create/Edit</button>
+          <button ng-click="generateData(opportunity._id)" class="homebutton btn">Generate</button>
+          <div class="col col-xs-4 text-left">
+            <p>{{opportunity.criteriaName}}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col col-xs-4 text-right">
+            <p>Object API Name</p>
+          </div>
+          <div class="col col-xs-4 text-left">
+            <p>{{opportunity.objectApiName}}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col col-xs-4 text-right">
+            <p>Industry</p>
+          </div>
+          <div class="col col-xs-4 text-left">
+            <p>{{opportunity.industryType}}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col col-xs-4 text-right">
+            <p>Amount From</p>
+          </div>
+          <div class="col col-xs-4 text-left">
+            <p>$ {{opportunity.amountFrom}}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col col-xs-4 text-right">
+            <p>Amount To</p>
+          </div>
+          <div class="col col-xs-4 text-left">
+            <p>$ {{opportunity.amountTo}}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col col-xs-4 text-right">
+            <p>Created Date From (Data)</p>
+          </div>
+          <div class="col col-xs-4 text-left">
+            <p>{{opportunity.dataCreatedDateFrom}}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col col-xs-4 text-right">
+            <p>Created Date To (Data)</p>
+          </div>
+          <div class="col col-xs-4 text-left">
+            <p>{{opportunity.dataCreatedDateTo}}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col col-xs-4 text-right">
+            <p>Close Date Range From (Opportunity)</p>
+          </div>
+          <div class="col col-xs-4 text-left">
+            <p>{{opportunity.opportunityCloseRangeFrom}} days</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col col-xs-4 text-right">
+            <p>Close Date Range To (Opportunity)</p>
+          </div>
+          <div class="col col-xs-4 text-left">
+            <p>{{opportunity.opportunityCloseRangeTo}} days</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col col-xs-4 text-right">
+            <p>Number of Records</p>
+          </div>
+          <div class="col col-xs-4 text-left">
+            <p>{{opportunity.numberOfRecords}}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col col-xs-4 text-right">
+            <p>Chart Type</p>
+          </div>
+          <div class="col col-xs-4 text-left">
+            <p>{{opportunity.chartType}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,41 @@
+<div class="row">
+  <div class="col col-xs-12">
+    <div class="well registerwell">
+      <h2>Register</h2>
+      <form ng-submit=" registerForm.$valid && registerUser()" novalidate name="registerForm">
+        <label class="label" for="username">Username:</label>
+        <input type="text" name="username" ng-model="username" required placeholder="Username..." class="formInput"/>
+        <br>
+        <div ng-messages="registerForm.username.$error" ng-if="registerForm.username.$dirty">
+          <div ng-message="required">Username is required</div>
+        </div>
+        <br>
+        <label class="label" for="password">Password:</label>
+        <input type="password" ng-model="password" required placeholder="Password..." name="password" class="formInput"/>
+        <div ng-messages="registerForm.username.$error" ng-if="registerForm.password.$dirty">
+          <div ng-message="required">Password is required</div>
+        </div>
+        <br>
+        <br>
+        <label class="label" for="password">Confirm Password:</label>
+        <input type="password" ng-model="passwordConfirm" ng-pattern="{{ password }}" required placeholder="Confirm Password..." name="passwordConfirm" class="passwordConfirm formInput"/>
+        <br>
+        <div ng-messages="registerForm.passwordConfirm.$error" ng-if="registerForm.passwordConfirm.$dirty">
+          <div ng-message="required">Please confirm your password</div>
+          <div ng-message="pattern">Passwords do not match</div>
+        </div>
+        <br>
+        <label class="label" for="email">Email:</label>
+        <input type="text" ng-model="email" required placeholder="example@example.com" name="email" class="formInput"/>
+        <br>
+        <div ng-messages="registerForm.email.$error" ng-if="registerForm.email.$dirty">
+          <div ng-message="required">Email is required</div>
+          <div ng-message="email">Invalid email address</div>
+        </div>
+        <br>
+        <button type="submit" class="btn homebutton" ng-disabled="registerForm.$invalid">Register</button>
+      </form>
+      <p ng-show="registered">You've successfully registered and may now login. <button type="button" class="btn homebutton" ng-click="register()">Login</button></p>
+    </div>
+  </div>
+</div>

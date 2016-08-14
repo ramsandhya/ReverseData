@@ -3,95 +3,124 @@
     <div class="well mywell">
       <div class="row">
         <div class="col col-xs-6">
-          <h4>Set the criteria</h4>
+          <p class="edit">Set the criteria</p>
+
           <!-- Account section start -->
           <div class="row">
-            <p>Account</p>
             <div class="col col-xs-6 text-right">
-              <p>Account Name</p>
+              <p>Criteria Name</p>
             </div>
             <div class="col col-xs-6 text-left">
-              <input type="text" name="accountname" value="Account Name">
-            </div>
-          </div>
-          <!-- Account Section end -->
-          <div class="row">
-            <p>Contact</p>
-            <div class="col col-xs-6 text-right">
-              <p>First Name</p>
-            </div>
-            <div class="col col-xs-6 text-left">
-              <input type="text" name="firstname" value="First Name">
-            </div>
-          </div>
-          <div class="row">
-            <div class="col col-xs-6 text-right">
-              <p>Last Name</p>
-            </div>
-            <div class="col col-xs-6 text-left">
-              <input type="text" name="lastname" value="Last Name">
+              <input type="text" ng-model="criteriaName" placeholder="Name of Criteria">
             </div>
           </div>
 
           <div class="row">
-            <p>Product</p>
+            <div class="col col-xs-6 text-right">
+              <p>Object API Name</p>
+            </div>
+            <div class="col col-xs-6 text-left">
+              <input type="text" ng-model="objectApiName"></input>
+            </div>
+          </div>
+
+          <div class="row">
             <div class="col col-xs-6 text-right">
               <p>Industry</p>
             </div>
             <div class="col col-xs-6 text-left">
-              <select name="prodIndustry" ng-model="prodIndustry" required>
+              <select ng-model="industryType" required>
+                <option value="Retail">Retail</option>
+                <option value="pharmaceutical">Pharmaceutical</option>
+                <option value="humanresource">Human Resource</option>
                 <option value="insurance">Insurance</option>
-                <option value="finance">Finance<e/option>
-                <option value="retail">Retail</option>
-                <option value="hitech">Hi-Tech</option>
-                <option value="Pharmaceutical">Pharmaceutical</option>
-                <option value="hospitality">Hospitality</option>
+                <option value="financial">Financial</option>
+                <option value="manufacturing">Manufacturing</option>
+                <option value="service">Service</option>
               </select>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col col-xs-6 text-right">
+              <p>Amount From</p>
+            </div>
+            <div class="col col-xs-6 text-left">
+              <input type="Number" ng-model="amountFrom" placeholder="Start amount..">
             </div>
           </div>
           <div class="row">
             <div class="col col-xs-6 text-right">
-              <p>Unit of measurement</p>
+              <p>Amount To</p>
             </div>
             <div class="col col-xs-6 text-left">
-              <select name="prodUnit" ng-model="prodUnit" required>
-                <option value="pounds">Pounds</option>
-                <option value="pieces">Pieces<e/option>
-                <option value="kilos">Kilos</option>
-                <option value="number">Number</option>
-              </select>
+              <input type="Number" ng-model="amountTo" placeholder="End amount..">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col col-xs-6 text-right">
+              <p>Created Date From (Data) </p>
+            </div>
+            <div class="col col-xs-6 text-left">
+              <input type="Date" ng-model="dataCreatedDateFrom">
             </div>
           </div>
           <div class="row">
             <div class="col col-xs-6 text-right">
-              <p>Opprtunity Stage</p>
+              <p>Created Date To (Data)</p>
             </div>
             <div class="col col-xs-6 text-left">
-              <select name="oppstage" ng-model="opp" required>
-                <option value="contacted">Contacted</option>
-                <option value="scheduled">Demo Scheduled<e/option>
-                <option value="proposal">Proposal Presented</option>
-                <option value="negotiation">Negotiation Started</option>
-                <option value="signed">Contract Signed</option>
-                <option value="won">Closed-Won</option>
-                <option value="lost">Closed-Lost</option>
-              </select>
+              <input type="Date" ng-model="dataCreatedDateTo">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col col-xs-6 text-right">
+              <p>Close Date Range From (Opportunity)</p>
+            </div>
+            <div class="col col-xs-6 text-left">
+              <input type="Number" ng-model="opportunityCloseRangeFrom">
             </div>
           </div>
           <div class="row">
             <div class="col col-xs-6 text-right">
-              <p>Chart</p>
+              <p>Close Date Range To(Opportunity)</p>
             </div>
             <div class="col col-xs-6 text-left">
-              <select name="chart" ng-model="chart" required>
+              <input type="Number" ng-model="opportunityCloseRangeTo" >
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col col-xs-6 text-right">
+              <p>Number of Records</p>
+            </div>
+            <div class="col col-xs-6 text-left">
+              <input type="Number" ng-model="numberOfRecords">
+            </div>
+          </div>
+
+          <!-- Account Section end -->
+          <div class="row">
+            <div class="col col-xs-6 text-right">
+              <p>Chart Type</p>
+            </div>
+            <div class="col col-xs-6 text-left">
+              <select ng-model="chartType" required>
+                <option>Linear</option>
                 <option value="parabolic">Parabolic</option>
-                <option value="exponential">Exponential<e/option>
+                <option value="exponential">Exponential</option>
               </select>
             </div>
           </div>
-          <!-- Product section ends -->
+
+          <div class="row">
+            <button ng-click="createCriteria()" type="button" class="homebutton btn">Save Criteria</button>
+          </div>
         </div>
         <div class="col col-xs-6 graph">
+          <button ng-click="createCriteria()" type="button" class="homebutton btn">My Criteria List</button>
           <img src="http://aspire.sharesinv.com.s3-ap-southeast-1.amazonaws.com/wp-content/uploads/2016/01/18104700/img_471x347_blue_colored_chart_arrow_up-471x347.png" class="img-responsive criteria-image">
         </div>
       </div>
