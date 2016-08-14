@@ -168,7 +168,7 @@ reverseDataApp.controller('CriteriaController', function($scope, $http, $locatio
         })
       }
       $scope.pushData = function(criteriaId){
-        http.post('/push',{
+        $http.post('/push',{
           criteriaId: criteriaId
         })
         .then(function(response) {
