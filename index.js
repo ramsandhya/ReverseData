@@ -38,7 +38,7 @@ var Criteria = mongoose.model('Criteria',{
 
 });
 
-var ListItem = mongoose.model('ListItem', {
+var Opportunity = mongoose.model('Opportunity', {
   amountTo: { type: Number, required: true },
   numberOfRecords: { type: Number }
 });
@@ -120,7 +120,7 @@ app.post('/login', function(req, res) {
 });
 
 
-app.post('/createData',function(req, res){
+app.post('/createCriteria',function(req, res){
   var criteriaName = req.body.criteriaName;
   var objectApiName = req.body.objectApiName;
   var industryType = req.body.industryType;
@@ -149,9 +149,9 @@ app.post('/createData',function(req, res){
     numberOfRecords: numberOfRecords,
     chartType: chartType
   })
-  .then(function(opportunity){
-    console.log(opportunity);
-    return res.json({status: "OK", opportunity: opportunity});
+  .then(function(criteria){
+    console.log(criteria);
+    return res.json({status: "OK", criteria: criteria});
   })
   .catch(function(err){
     console.log(err);
@@ -161,8 +161,8 @@ app.post('/createData',function(req, res){
 
 app.get('/fetchData', function(req, res){
   Criteria.find()
-  .then(function(opportunity){
-    return res.json({status: "OK", opportunity: opportunity});
+  .then(function(criteria){
+    return res.json({status: "OK", criteria: criteria});
   })
   .catch(function(err){
     res.json({ "status": "fail", "message": err.message });
@@ -177,12 +177,20 @@ app.post('/generate', function(req, res){
       if(!criteria){
         throw new Error("Criteria not found");
       } else {
-        var list = [];
-        for (var i = 0; i < criteria.numberOfRecords; i++){
-          list.push({
-            amountTo: criteria.amountTo
-          });
-          ListItem.create(list)
+        Opportunity.remove({})
+        .then(function (){
+          var list = [];
+          var diff = criteria.amountTo - criteria.amountFrom;
+          var increment = diff / criteria.numberOfRecords;
+          for (var i = 0; i < criteria.numberOfRecords; i++){
+            if (criteria.chartType === "Linear") {
+              criteria.amountFrom += increment;
+              list.push({
+                amountTo: criteria.amountFrom
+              });
+            }
+          }
+          Opportunity.create(list)
           .then(function(results) {
             return res.json({status: "OK", result: results})
           })
@@ -190,7 +198,11 @@ app.post('/generate', function(req, res){
             console.log(err);
             return res.json({status: "fail", "message": err.message});
           });
-        }
+        })
+        .catch(function(err) {
+          console.log(err);
+          return res.json({status: "fail", "message": err.message});
+        });
       }
     })
     .catch(function(err) {

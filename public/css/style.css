@@ -16,7 +16,7 @@ h5{
 h3{
   font-size: 50px;
   font-family: fantasy;
-  color: #0da866;
+  color: #3266b1;
   padding-left: 30px;
 }
 h4{
@@ -45,7 +45,7 @@ body{
   background-color: blue;
 }
 .nav-pills>li>a{
-  color: orange;
+  color: #3266b1;
   font-size: 20px;
   text-align: justify;
 }
@@ -70,7 +70,8 @@ body{
   height: 430px;
 }
 .childwell{
-  background-color: #fff9f2;
+  background-color: white;
+  border: 1px solid orange;
 }
 .criteriawell{
   background-color: transparent;;
@@ -93,4 +94,8 @@ h2{
   background-color: transparent;
   border: 2px solid orange;
   border-radius: 10px;
+}
+.modal-body {
+    max-height: calc(100vh - 210px);
+    overflow-y: auto;
 }

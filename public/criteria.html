@@ -4,15 +4,16 @@
     <h4 class="edit">Criteria List</h4>
     <div class="well mywell criteriawell">
 
-      <div class="well childwell" ng-repeat="opportunity in opportunities">
+      <div class="well childwell" ng-repeat="criteria in criterias">
         <div class="row" >
           <div class="col col-xs-4 text-right">
             <p>Criteria Name</p>
           </div>
           <button ng-click="createCriteria()" class="homebutton btn" >Create/Edit</button>
-          <button ng-click="generateData(opportunity._id)" class="homebutton btn">Generate</button>
+          <button ng-click="generateData(criteria._id)" class="homebutton btn">Generate</button>
+
           <div class="col col-xs-4 text-left">
-            <p>{{opportunity.criteriaName}}</p>
+            <p>{{criteria.criteriaName}}</p>
           </div>
         </div>
         <div class="row">
@@ -20,7 +21,7 @@
             <p>Object API Name</p>
           </div>
           <div class="col col-xs-4 text-left">
-            <p>{{opportunity.objectApiName}}</p>
+            <p>{{criteria.objectApiName}}</p>
           </div>
         </div>
         <div class="row">
@@ -28,7 +29,7 @@
             <p>Industry</p>
           </div>
           <div class="col col-xs-4 text-left">
-            <p>{{opportunity.industryType}}</p>
+            <p>{{criteria.industryType}}</p>
           </div>
         </div>
         <div class="row">
@@ -36,7 +37,7 @@
             <p>Amount From</p>
           </div>
           <div class="col col-xs-4 text-left">
-            <p>$ {{opportunity.amountFrom}}</p>
+            <p>{{criteria.amountFrom | currency}}</p>
           </div>
         </div>
         <div class="row">
@@ -44,7 +45,7 @@
             <p>Amount To</p>
           </div>
           <div class="col col-xs-4 text-left">
-            <p>$ {{opportunity.amountTo}}</p>
+            <p>{{criteria.amountTo | currency}}</p>
           </div>
         </div>
         <div class="row">
@@ -52,7 +53,7 @@
             <p>Created Date From (Data)</p>
           </div>
           <div class="col col-xs-4 text-left">
-            <p>{{opportunity.dataCreatedDateFrom}}</p>
+            <p>{{criteria.dataCreatedDateFrom | date:'medium'}}</p>
           </div>
         </div>
         <div class="row">
@@ -60,7 +61,7 @@
             <p>Created Date To (Data)</p>
           </div>
           <div class="col col-xs-4 text-left">
-            <p>{{opportunity.dataCreatedDateTo}}</p>
+            <p>{{criteria.dataCreatedDateTo | date:'medium'}}</p>
           </div>
         </div>
         <div class="row">
@@ -68,7 +69,7 @@
             <p>Close Date Range From (Opportunity)</p>
           </div>
           <div class="col col-xs-4 text-left">
-            <p>{{opportunity.opportunityCloseRangeFrom}} days</p>
+            <p>{{criteria.opportunityCloseRangeFrom}} days</p>
           </div>
         </div>
         <div class="row">
@@ -76,7 +77,7 @@
             <p>Close Date Range To (Opportunity)</p>
           </div>
           <div class="col col-xs-4 text-left">
-            <p>{{opportunity.opportunityCloseRangeTo}} days</p>
+            <p>{{criteria.opportunityCloseRangeTo}} days</p>
           </div>
         </div>
         <div class="row">
@@ -84,7 +85,7 @@
             <p>Number of Records</p>
           </div>
           <div class="col col-xs-4 text-left">
-            <p>{{opportunity.numberOfRecords}}</p>
+            <p>{{criteria.numberOfRecords}}</p>
           </div>
         </div>
         <div class="row">
@@ -92,7 +93,7 @@
             <p>Chart Type</p>
           </div>
           <div class="col col-xs-4 text-left">
-            <p>{{opportunity.chartType}}</p>
+            <p>{{criteria.chartType}}</p>
           </div>
         </div>
       </div>

@@ -124,7 +124,7 @@ reverseDataApp.controller('EditController', function($scope, $http, $location){
       chartType: $scope.chartType
     };
     console.log(data);
-    $http.post('/createData', data)
+    $http.post('/createCriteria', data)
       .then(function(response) {
         if (response.status === 200) {
           // user successfully created
@@ -140,14 +140,14 @@ reverseDataApp.controller('EditController', function($scope, $http, $location){
 });
 
 reverseDataApp.controller('CriteriaController', function($scope, $http, $location){
-  $scope.opportunities = null;
+  $scope.criterias = null;
     $http.get('/fetchData')
       .then(function(result){
         console.log(result);
-        $scope.opportunities = result.data.opportunity;
+        $scope.criterias = result.data.criteria;
       })
       .catch(function(err){
-        $scope.opportunities = [{err:"Could not load json opportunity"}];
+        $scope.criterias = [{err:"Could not load json criteria"}];
       });
       $scope.createCriteria = function(){
         console.log("clicked");
@@ -156,6 +156,15 @@ reverseDataApp.controller('CriteriaController', function($scope, $http, $locatio
       $scope.generateData = function(criteriaId){
         $http.post('/generate', {
           criteriaId: criteriaId
+        })
+        .then(function(response) {
+          if (response.status === 200) {
+            // user successfully created
+            console.log("Yay");
+          }
+        })
+        .catch(function(err) {
+          console.log(err);
         })
       }
 });
