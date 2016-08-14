@@ -33,9 +33,6 @@ var oauth2 = new sf.OAuth2({
 var app = express();
 
 app.use(bodyParser.json());
-app.use(function (req, res, next) {
-
-});
 
 app.set('port', (process.env.PORT || 3000));
 // app.use(express.static(__dirname + '/ReverseData'));
