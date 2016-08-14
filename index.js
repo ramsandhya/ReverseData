@@ -253,13 +253,14 @@ var createOpportunities = function (accessToken, instanceUrl) {
   var results = [];
   Opportunity.find({})
   .then(function(opportunityArray) {
+    var myOpportunityArray = JSON.stringify(opportunityArray);
     var conn = new sf.Connection({
       instanceUrl: instanceUrl,
       accessToken: accessToken
      });
-    opportunityArray.forEach(function(opportunity){ delete opportunity._id });
+    myOpportunityArray.forEach(function(opportunity){ delete opportunity._id });
     conn.sobject("Opportunity").create(
-        opportunityArray,
+        myOpportunityArray,
         function(err, resultData) {
         if (err) { return console.error(err); }
         for (var i=0; i < resultData.length; i++) {
@@ -309,6 +310,7 @@ app.get('/push', function(req, res) {
       });
     } else {
       results = createOpportunities(sfdcConn.accessToken, sfdcConn.instanceUrl);
+      res.json({status: "OK", result: results});
     }
   })
   .catch(function(err){
