@@ -257,6 +257,7 @@ var createOpportunities = function (accessToken, instanceUrl) {
       instanceUrl: instanceUrl,
       accessToken: accessToken
      });
+    opportunityArray.forEach(function(opportunity){ delete opportunity._id });
     conn.sobject("Opportunity").create(
         opportunityArray,
         function(err, resultData) {
