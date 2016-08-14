@@ -18,7 +18,8 @@ var oauth2 = new sf.OAuth2({
   // redirectUri : '<callback URI is here>'
   clientId : process.env.CLIENT_ID,
   clientSecret : process.env.CLIENT_SECRET,
-  redirectUri : process.env.REDIRECT_URI
+  redirectUri : process.env.REDIRECT_URI,
+  response_type: 'code'
 });
 
 var app = express();
@@ -232,9 +233,28 @@ app.post('/generate', function(req, res){
 // Get authz url and redirect to it.
 //
 app.get('/push', function(req, res) {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-  res.redirect(oauth2.getAuthorizationUrl({ scope : 'api' }));
+  var conn = new sf.Connection({ oauth2 : oauth2 });
+  var code = req.param('code');
+  var results;
+  conn.login(process.env.SFDC_USERNAME, process.env.SFDC_PWD, function(err, userInfo) {
+    if (err) { return console.error(err); }
+    // Now you can get the access token, refresh token, and instance URL information.
+    // Save them to establish connection next time.
+    console.log(conn.accessToken);
+    console.log(conn.refreshToken);
+    console.log(conn.instanceUrl);
+    console.log("User ID: " + userInfo.id);
+    console.log("Org ID: " + userInfo.organizationId);
+    // ...
+    results = {
+      accessToken: conn.accessToken,
+      refreshToken: conn.refreshToken,
+      instanceUrl: conn.instanceUrl,
+      userId: userInfo.id,
+      orgId: userInfo.organizationId
+    }
+  });
+  return res.json({status: "OK", result: results});
 });
 
 app.get('/oauth2/callback', function(req, res) {
