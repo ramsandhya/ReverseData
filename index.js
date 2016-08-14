@@ -232,6 +232,8 @@ app.post('/generate', function(req, res){
 // Get authz url and redirect to it.
 //
 app.get('/push', function(req, res) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
   res.redirect(oauth2.getAuthorizationUrl({ scope : 'api id web' }));
 });
 
