@@ -220,7 +220,7 @@ app.post('/generate', function(req, res){
               criteria.amountFrom
               list.push({
                 AccountId: '00141000002gC3Q',
-                Amount: criteria.amountFrom,
+                Amount: amount,
                 CloseDate: new Date(dateInMilliSeconds + randomCloseDaysInMilliSeconds),
                 Name: 'Opportunity Name ' + i,
                 StageName: 'Closed/Won',
