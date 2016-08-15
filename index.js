@@ -209,7 +209,7 @@ app.post('/generate', function(req, res){
           var list = [];
           var diff = criteria.amountTo - criteria.amountFrom;
           var increment = diff / criteria.numberOfRecords;
-          var dateIncrement = (criteria.dataCreatedDateTo.getTime() - criteria.dataCreatedDateFrom.getTime())/numberOfRecords;
+          var dateIncrement = (criteria.dataCreatedDateTo.getTime() - criteria.dataCreatedDateFrom.getTime())/criteria.numberOfRecords;
           var amount = 0;
           var dateInMilliSeconds = 0;
           for (var i = 0; i < criteria.numberOfRecords; i++){
