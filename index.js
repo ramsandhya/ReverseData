@@ -212,7 +212,7 @@ app.post('/generate', function(req, res){
           var dateIncrement = (criteria.dataCreatedDateTo.getTime() - criteria.dataCreatedDateFrom.getTime())/criteria.numberOfRecords;
           var amount = 0;
           var dateInMilliSeconds = 0;
-          var randomCloseDaysInMilliSeconds = Math.random() * 10 * (opportunityCloseRangeTo - opportunityCloseRangeFrom) + opportunityCloseRangeTo;
+          var randomCloseDaysInMilliSeconds = Math.random() * 10 * (criteria.opportunityCloseRangeTo - criteria.opportunityCloseRangeFrom) + criteria.opportunityCloseRangeTo;
           for (var i = 0; i < criteria.numberOfRecords; i++){
             if (criteria.chartType === "Linear") {
               amount = (i === 0)? criteria.amountFrom : amount + increment;
