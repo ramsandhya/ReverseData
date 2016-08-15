@@ -267,7 +267,7 @@ var createOpportunities = function (accessToken, instanceUrl) {
     myOpportunityArray.forEach(function(opportunity){ delete opportunity._id;  delete opportunity.__v; });
     conn.sobject("Opportunity").destroy({
       AccountId: '00141000002gC3Q'
-    }}, function(err, ret) {
+    }, function(err, ret) {
       if (err || !ret.success) { return console.error(err, ret); }
       console.log('Deleted Successfully : ' + ret.id);
     });
