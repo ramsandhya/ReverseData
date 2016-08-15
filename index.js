@@ -270,7 +270,7 @@ var createOpportunities = function (accessToken, instanceUrl) {
     //   })
     //   .destroy("Opportunity",function(err, ret) {
     //     if (err || !ret.success) { console.error(err, ret); }
-        console.log('Deleted Successfully : ' + ret.id);
+        //console.log('Deleted Successfully : ' + ret.id);
         // var conn = new sf.Connection({
         //   instanceUrl: instanceUrl,
         //   accessToken: accessToken
