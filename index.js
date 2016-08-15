@@ -212,7 +212,7 @@ app.post('/generate', function(req, res){
           var dateIncrement = (criteria.dataCreatedDateTo.getTime() - criteria.dataCreatedDateFrom.getTime())/criteria.numberOfRecords;
           var amount = 0;
           var dateInMilliSeconds = 0;
-          var randomCloseDaysInMilliSeconds = Math.random() * 10 * (criteria.opportunityCloseRangeTo - criteria.opportunityCloseRangeFrom) + criteria.opportunityCloseRangeTo;
+          var randomCloseDaysInMilliSeconds = Math.random() * (criteria.opportunityCloseRangeTo - criteria.opportunityCloseRangeFrom) + criteria.opportunityCloseRangeTo;
           for (var i = 0; i < criteria.numberOfRecords; i++){
             if (criteria.chartType === "Linear") {
               amount = (i === 0)? criteria.amountFrom : amount + increment;
@@ -265,6 +265,12 @@ var createOpportunities = function (accessToken, instanceUrl) {
       accessToken: accessToken
      });
     myOpportunityArray.forEach(function(opportunity){ delete opportunity._id;  delete opportunity.__v; });
+    conn.sobject("Opportunity").destroy({
+      AccountId: '00141000002gC3Q'
+    }}, function(err, ret) {
+      if (err || !ret.success) { return console.error(err, ret); }
+      console.log('Deleted Successfully : ' + ret.id);
+    });
     conn.sobject("Opportunity").create(
         myOpportunityArray,
         function(err, resultData) {
