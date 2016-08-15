@@ -212,6 +212,7 @@ app.post('/generate', function(req, res){
           var dateIncrement = (criteria.dataCreatedDateTo.getTime() - criteria.dataCreatedDateFrom.getTime())/criteria.numberOfRecords;
           var amount = 0;
           var dateInMilliSeconds = 0;
+          var randomCloseDaysInMilliSeconds = Math.random() * 10 * (opportunityCloseRangeTo - opportunityCloseRangeFrom) + opportunityCloseRangeTo;
           for (var i = 0; i < criteria.numberOfRecords; i++){
             if (criteria.chartType === "Linear") {
               amount = (i === 0)? criteria.amountFrom : amount + increment;
@@ -220,11 +221,11 @@ app.post('/generate', function(req, res){
               list.push({
                 AccountId: '00141000002gC3Q',
                 Amount: criteria.amountFrom,
-                CloseDate: new Date(dateInMilliSeconds),
+                CloseDate: new Date(dateInMilliSeconds + randomCloseDaysInMilliSeconds),
                 Name: 'Opportunity Name ' + i,
                 StageName: 'Closed/Won',
-                CreatedDate: new Date(),
-                LastModifiedDate: new Date()
+                CreatedDate: new Date(dateInMilliSeconds),
+                LastModifiedDate: new Date(dateInMilliSeconds)
               });
             }
           }
