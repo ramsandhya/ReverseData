@@ -271,9 +271,8 @@ var createOpportunities = function (accessToken, instanceUrl) {
       .destroy("Opportunity",function(err, records) {
         if (err || !ret.success) { return console.error(err, ret); }
         console.log('Deleted Successfully : ' + ret.id);
-      });
-
-    conn.sobject("Opportunity").create(
+      })
+      .sobject("Opportunity").create(
         myOpportunityArray,
         function(err, resultData) {
         if (err) { return console.error(err); }
