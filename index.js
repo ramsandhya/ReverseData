@@ -61,7 +61,7 @@ var Criteria = mongoose.model('Criteria',{
 });
 
 var Opportunity = mongoose.model('Opportunity', {
-  Account: { type: String, required: true },
+  AccountId: { type: String, required: true },
   Amount: { type: Number, required: true },
   CloseDate: { type: Date, required: true },
   Name: { type: String, required: true },
