@@ -265,17 +265,17 @@ var createOpportunities = function (accessToken, instanceUrl) {
       accessToken: accessToken
      });
     myOpportunityArray.forEach(function(opportunity){ delete opportunity._id;  delete opportunity.__v; });
-    conn.sobject("Opportunity").find({
-        AccountId: '00141000002gC3Q'
-      })
-      .destroy("Opportunity",function(err, ret) {
-        if (err || !ret.success) { console.error(err, ret); }
+    // conn.sobject("Opportunity").find({
+    //     AccountId: '00141000002gC3Q'
+    //   })
+    //   .destroy("Opportunity",function(err, ret) {
+    //     if (err || !ret.success) { console.error(err, ret); }
         console.log('Deleted Successfully : ' + ret.id);
-        var conn2 = new sf.Connection({
-          instanceUrl: instanceUrl,
-          accessToken: accessToken
-         });
-        conn2.sobject("Opportunity").create(
+        // var conn = new sf.Connection({
+        //   instanceUrl: instanceUrl,
+        //   accessToken: accessToken
+        //  });
+        conn.sobject("Opportunity").create(
             myOpportunityArray,
             function(err, resultData) {
             if (err) { return console.error(err); }
@@ -286,7 +286,7 @@ var createOpportunities = function (accessToken, instanceUrl) {
             }
             results = resultData;
           });
-      });
+      // });
   });
   return results;
 };
