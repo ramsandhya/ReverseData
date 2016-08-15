@@ -209,13 +209,18 @@ app.post('/generate', function(req, res){
           var list = [];
           var diff = criteria.amountTo - criteria.amountFrom;
           var increment = diff / criteria.numberOfRecords;
+          var dateIncrement = (criteria.dataCreatedDateTo.getTime() - criteria.dataCreatedDateFrom.getTime())/numberOfRecords;
+          var amount = 0;
+          var dateInMilliSeconds = 0;
           for (var i = 0; i < criteria.numberOfRecords; i++){
             if (criteria.chartType === "Linear") {
-              criteria.amountFrom += increment;
+              amount = (i === 0)? criteria.amountFrom : amount + increment;
+              dateInMilliSeconds = (i === 0)? criteria.dataCreatedDateFrom.getTime() : dateInMilliSeconds + dateIncrement;
+              criteria.amountFrom
               list.push({
                 AccountId: '00141000002gC3Q',
                 Amount: criteria.amountFrom,
-                CloseDate: new Date(),
+                CloseDate: new Date(dateInMilliSeconds),
                 Name: 'Opportunity Name ' + i,
                 StageName: 'Closed/Won',
                 CreatedDate: new Date(),
