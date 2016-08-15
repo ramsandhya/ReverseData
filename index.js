@@ -65,7 +65,7 @@ var Opportunity = mongoose.model('Opportunity', {
   Amount: { type: Number, required: true },
   CloseDate: { type: Date, required: true },
   Name: { type: String, required: true },
-  Stage: { type: String, required: true },
+  StageName: { type: String, required: true },
   CreatedDate: { type: Date, required: true },
   LastModifiedDate: { type: Date, required: true }
 });
@@ -217,7 +217,7 @@ app.post('/generate', function(req, res){
                 Amount: criteria.amountFrom,
                 CloseDate: new Date(),
                 Name: 'Opportunity Name ' + i,
-                Stage: 'Closed/Won',
+                StageName: 'Closed/Won',
                 CreatedDate: new Date(),
                 LastModifiedDate: new Date()
               });
