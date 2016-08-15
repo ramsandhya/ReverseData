@@ -267,11 +267,10 @@ var createOpportunities = function (accessToken, instanceUrl) {
     myOpportunityArray.forEach(function(opportunity){ delete opportunity._id;  delete opportunity.__v; });
     conn.sobject("Opportunity").find({
         AccountId: '00141000002gC3Q'
-      }).execute(function(err, records) {
-        conn.sobject("Opportunity").destroy(records, function(err, ret) {
-          if (err || !ret.success) { return console.error(err, ret); }
-          console.log('Deleted Successfully : ' + ret.id);
-        });
+      })
+      .destroy("Opportunity",function(err, records) {
+        if (err || !ret.success) { return console.error(err, ret); }
+        console.log('Deleted Successfully : ' + ret.id);
       });
 
     conn.sobject("Opportunity").create(
