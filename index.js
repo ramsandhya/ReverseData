@@ -212,12 +212,22 @@ app.post('/generate', function(req, res){
           var dateIncrement = (criteria.dataCreatedDateTo.getTime() - criteria.dataCreatedDateFrom.getTime())/criteria.numberOfRecords;
           var amount = 0;
           var dateInMilliSeconds = 0;
-          var randomCloseDaysInMilliSeconds = Math.random() * (criteria.opportunityCloseRangeTo - criteria.opportunityCloseRangeFrom) + criteria.opportunityCloseRangeTo;
+          var randomCloseDaysInMilliSeconds = (Math.random() * (criteria.opportunityCloseRangeTo - criteria.opportunityCloseRangeFrom) + criteria.opportunityCloseRangeFrom)*24*60*60*1000;
+          console.log("Begin generate");
+          console.log(criteria.numberOfRecords);
           for (var i = 0; i < criteria.numberOfRecords; i++){
             if (criteria.chartType === "Linear") {
+              console.log(criteria.chartType);
               amount = (i === 0)? criteria.amountFrom : amount + increment;
+              console.log(criteria.amountFrom);
+            } else if (criteria.chartType === "exponential") {
+              console.log(criteria.chartType);
+              amount = (i === 0)? criteria.amountFrom : criteria.amountFrom +
+               Math.pow(Math.E, i);
+               console.log(criteria.amountFrom);
+
+            }
               dateInMilliSeconds = (i === 0)? criteria.dataCreatedDateFrom.getTime() : dateInMilliSeconds + dateIncrement;
-              criteria.amountFrom
               list.push({
                 AccountId: '00141000002gC3Q',
                 Amount: amount,
@@ -227,7 +237,6 @@ app.post('/generate', function(req, res){
                 CreatedDate: new Date(dateInMilliSeconds),
                 LastModifiedDate: new Date(dateInMilliSeconds)
               });
-            }
           }
           Opportunity.create(list)
           .then(function(results) {
@@ -255,6 +264,8 @@ app.post('/generate', function(req, res){
 //
 // Get authz url and redirect to it.
 //
+
+
 var createOpportunities = function (accessToken, instanceUrl) {
   var results = [];
   Opportunity.find({})
@@ -334,7 +345,10 @@ app.get('/push', function(req, res) {
     res.json({ "status": "fail", "message": err.message });
   });
 
+});
 
+app.listen(app.get('port'), function() {
+  console.log('Node app is running on port', app.get('port'));
 });
 
 // app.get('/oauth2/callback', function(req, res) {
@@ -359,7 +373,3 @@ app.get('/push', function(req, res) {
 //     name: 'world!'
 //   });
 // });
-
-app.listen(app.get('port'), function() {
-  console.log('Node app is running on port', app.get('port'));
-});
