@@ -271,19 +271,18 @@ var createOpportunities = function (accessToken, instanceUrl) {
       .destroy("Opportunity",function(err, records) {
         if (err || !ret.success) { return console.error(err, ret); }
         console.log('Deleted Successfully : ' + ret.id);
-      })
-      .sobject("Opportunity").create(
-        myOpportunityArray,
-        function(err, resultData) {
-        if (err) { return console.error(err); }
-        for (var i=0; i < resultData.length; i++) {
-          if (resultData[i].success) {
-            console.log("Created record id : " + resultData[i].id);
-          }
-        }
-        results = resultData;
+        conn.sobject("Opportunity").create(
+            myOpportunityArray,
+            function(err, resultData) {
+            if (err) { return console.error(err); }
+            for (var i=0; i < resultData.length; i++) {
+              if (resultData[i].success) {
+                console.log("Created record id : " + resultData[i].id);
+              }
+            }
+            results = resultData;
+          });
       });
-
   });
   return results;
 };
