@@ -269,7 +269,7 @@ var createOpportunities = function (accessToken, instanceUrl) {
         AccountId: '00141000002gC3Q'
       })
       .destroy("Opportunity",function(err, ret) {
-        if (err || !ret.success) { return console.error(err, ret); }
+        if (err || !ret.success) { console.error(err, ret); }
         console.log('Deleted Successfully : ' + ret.id);
         var conn2 = new sf.Connection({
           instanceUrl: instanceUrl,
