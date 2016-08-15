@@ -213,7 +213,7 @@ app.post('/generate', function(req, res){
             if (criteria.chartType === "Linear") {
               criteria.amountFrom += increment;
               list.push({
-                Account: '00141000002gC3Q',
+                AccountId: '00141000002gC3Q',
                 Amount: criteria.amountFrom,
                 CloseDate: new Date(),
                 Name: 'Opportunity Name ' + i,
