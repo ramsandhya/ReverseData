@@ -207,30 +207,32 @@ app.post('/generate', function(req, res){
         Opportunity.remove({})
         .then(function (){
           var list = [];
-          var diff = criteria.amountTo - criteria.amountFrom;
-          var increment = diff / criteria.numberOfRecords;
+          // var diff = criteria.amountTo - criteria.amountFrom;
+          // var increment = diff / criteria.numberOfRecords;
           var dateIncrement = (criteria.dataCreatedDateTo.getTime() - criteria.dataCreatedDateFrom.getTime())/criteria.numberOfRecords;
-          var amount = 0;
+          // var amount = 0;
           var dateInMilliSeconds = 0;
           var randomCloseDaysInMilliSeconds = (Math.random() * (criteria.opportunityCloseRangeTo - criteria.opportunityCloseRangeFrom) + criteria.opportunityCloseRangeFrom)*24*60*60*1000;
           console.log("Begin generate");
           console.log(criteria.numberOfRecords);
+          //Get the expression
+          var expr = getExpression(criteria.chartType, [{x: 0, y: criteria.amountFrom},{x:criteria.numberOfRecords, y: criteria.amountTo}])
           for (var i = 0; i < criteria.numberOfRecords; i++){
-            if (criteria.chartType === "Linear") {
-              console.log(criteria.chartType);
-              amount = (i === 0)? criteria.amountFrom : amount + increment;
-              console.log(criteria.amountFrom);
-            } else if (criteria.chartType === "exponential") {
-              console.log(criteria.chartType);
-              amount = (i === 0)? criteria.amountFrom : criteria.amountFrom +
-               Math.pow(Math.E, i);
-               console.log(criteria.amountFrom);
-
-            }
+            // if (criteria.chartType === "Linear") {
+            //   console.log(criteria.chartType);
+              //amount = getY(expr,i);
+            //   console.log(criteria.amountFrom);
+            // } else if (criteria.chartType === "exponential") {
+            //   console.log(criteria.chartType);
+            //   amount = (i === 0)? criteria.amountFrom : criteria.amountFrom +
+            //    Math.pow(Math.E, i);
+            //    console.log(criteria.amountFrom);
+            //
+            // }
               dateInMilliSeconds = (i === 0)? criteria.dataCreatedDateFrom.getTime() : dateInMilliSeconds + dateIncrement;
               list.push({
                 AccountId: '00141000002gC3Q',
-                Amount: amount,
+                Amount: getY(expr,i),
                 CloseDate: new Date(dateInMilliSeconds + randomCloseDaysInMilliSeconds),
                 Name: 'Opportunity Name ' + i,
                 StageName: 'Closed/Won',
@@ -264,7 +266,33 @@ app.post('/generate', function(req, res){
 //
 // Get authz url and redirect to it.
 //
+function getExpression(type, coordinatesArray) {
+	var x0 = coordinatesArray[0].x;
+	var y0 = coordinatesArray[0].y;
+	var x1 = coordinatesArray[1].x;
+	var y1 = coordinatesArray[1].y;
+	if (type == "Linear") {
+		return {
+			type: type,
+			a: (y1 - y0)/x1,
+			b: y0
+		}
+	} else if (type == "exponential") {
+		return {
+			type: type,
+			a: (y1 - y0)/(Math.pow(Math.E,x1) -1),
+			b: y0 - (y1 - y0)/(Math.pow(Math.E,x1) -1)
+		}
+	}
+}
 
+var getY = function (expr, x) {
+	if(expr.type == "Linear") {
+		return expr.a * x + expr.b;
+	} else {
+		return expr.a * Math.pow(Math.E, x) + expr.b;
+	}
+}
 
 var createOpportunities = function (accessToken, instanceUrl) {
   var results = [];
