@@ -10,8 +10,18 @@ h5{
     font-size: 1.4em;
 }
 .header {
-background-color: green;
+background-color: mistyrose;
 width: auto;
+/*float: left;*/
+/*display: inline;*/
+}
+
+div.fixed {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 300px;
+    border: 3px solid #73AD21;
 }
 
 h3{
@@ -27,9 +37,12 @@ h4{
   color: #0da866;
   font-size: 25px;
 }
+.container-fluid{
+  margin-top: 1%;
+}
 
 body{
-  background-image: url("/images/background.jpg");
+  background-image: url("http://www.grandespymes.com.ar/wp-content/uploads/2016/06/crecimiento-de-una-empresa.jpg");
   background-repeat:no-repeat;
   -webkit-background-size:cover;
   -moz-background-size:cover;
@@ -43,19 +56,20 @@ body{
   background-position-y: -115%;
 }
 .nav>li>a:focus, .nav>li>a:hover {
-  color: #0da866;
+  color: black;
 }
 .nav-pills>li:focus{
-  background-color: blue;
+  background-color: black;
 }
 .nav-pills>li>a{
   color: #3266b1;
   font-size: 20px;
   text-align: justify;
+  width: 150px;
 }
 .homebutton{
-  background-color: #0da866;
-  color: white;
+  background-color: #7fbf22;
+  color: #3266b1;
   font-size: 18px;
 }
 .homebutton:hover {
@@ -66,7 +80,7 @@ body{
   border-radius: 5px;
 }
 .started{
-  padding-top: 5%;
+  padding-top: 2%;
 }
 .mywell{
   background-color: white;
@@ -74,7 +88,7 @@ body{
   height: 430px;
 }
 .childwell{
-  background-color: white;
+  background-color: seashell;
   border: 1px solid orange;
 }
 .criteriawell{
@@ -94,12 +108,13 @@ h2{
   color: #0da866;
 }
 .registerwell{
-  width: 372px;
+  width: 30%;
   background-color: transparent;
   border: 2px solid orange;
   border-radius: 10px;
+margin-left: 5%;
 }
-.modal-body {
-    max-height: calc(100vh - 210px);
-    overflow-y: auto;
+.navigation {
+  background-color: #7fbf22;
+  margin-top:2px;
 }

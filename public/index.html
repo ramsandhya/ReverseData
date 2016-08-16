@@ -8,26 +8,37 @@
   </head>
   <body>
     <!-- <img src="/http://whoisgarybledsoe.com/wp-content/uploads/2014/04/business-growth-vector-background-free.jpg" class="img-responsive" alt="" /> -->
-    <div class="container container-fluid">
+    <div class="container-fluid">
 
       <div class="row header">
-        <div class="col col-xs-12">
-          <h3>ReverseData</h3>
+        <div class="col col-xs-6">
+          <div class="row">
+            <div class="col col-sm-2">
+              <h3 class="header fixed">ReverseData</h3>
+            </div>
+            <div class="col col-sm-offset-3">
+              <img src="images/icon.png" alt="" />
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="col col-xs-3 col-xs-offset-6">
-        <a href="#/login" ng-show="!isLoggedIn()">Login</a>
-        <a href="#/register" ng-show="!isLoggedIn()">Signup</a>
-        <a ng-show="isLoggedIn()" ng-click="logout()">Logout</a>
-      </div>
-      <div class="row navigation">
-        <div class="col col-xs-7">
-          <ul class="nav nav-pills " >
-            <li role="presentation" ng-class="{active: activetab }"><a href="#/">Home</a></li>
-            <li ng-click="createCriteria()" role="presentation" ng-class="{active: activetab }"><a href="#/edit">Set Criteria</a></li>
-          </ul>
+        <div class="col col-xs-offset-10">
+          <button class="btn homebutton" type="button" name="button"><a href="#/login" ng-show="!isLoggedIn()">Login</a></button>
+          <button class="btn homebutton" type="button" name="button"><a href="#/register" ng-show="!isLoggedIn()">Signup</a></button>
+          <button class="btn homebutton" type="button" name="button"><a ng-show="isLoggedIn()" ng-click="logout()">Logout</a></button>
         </div>
+
       </div>
+
+        <div class="row navigation">
+          <div class="col col-xs-9">
+            <ul class="nav nav-pills " >
+              <li role="presentation" ng-class="{active: activetab }"><a href="#/">Home</a></li>
+              <li ng-click="createCriteria()" role="presentation" ng-class="{active: activetab }"><a href="#/edit">Set Criteria</a></li>
+              <li role="presentation" ng-class="{active: activetab }"><a href="#/">About us </a></li>
+              <li role="presentation" ng-class="{active: activetab }"><a href="#/">Contact us</a></li>
+            </ul>
+          </div>
+        </div>
 
       <ng-view></ng-view>
 
