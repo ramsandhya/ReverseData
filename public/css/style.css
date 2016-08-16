@@ -10,7 +10,8 @@ h5{
     font-size: 1.4em;
 }
 .header {
-  align-items: center;
+background-color: green;
+width: auto;
 }
 
 h3{
@@ -28,9 +29,12 @@ h4{
 }
 
 body{
-  background-image: url("http://whoisgarybledsoe.com/wp-content/uploads/2014/04/business-growth-vector-background-free.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
+  background-image: url("/images/background.jpg");
+  background-repeat:no-repeat;
+  -webkit-background-size:cover;
+  -moz-background-size:cover;
+  -o-background-size:cover;
+  background-size:cover;
 }
 .criteria-image {
   max-width: 70%;

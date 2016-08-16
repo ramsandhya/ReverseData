@@ -11,10 +11,14 @@
     <div class="container container-fluid">
 
       <div class="row header">
-        <div class="col col-xs-3">
+        <div class="col col-xs-12">
           <h3>ReverseData</h3>
         </div>
-
+      </div>
+      <div class="col col-xs-3 col-xs-offset-6">
+        <a href="#/login" ng-show="!isLoggedIn()">Login</a>
+        <a href="#/register" ng-show="!isLoggedIn()">Signup</a>
+        <a ng-show="isLoggedIn()" ng-click="logout()">Logout</a>
       </div>
       <div class="row navigation">
         <div class="col col-xs-7">

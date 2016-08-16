@@ -46,6 +46,7 @@ reverseDataApp.run(function($rootScope, $location, $cookies) {
 
     $rootScope.logout = function() {
       $cookies.remove('token');
+      $location.path('/');
     };
   });
 });
