@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="/css/style.css">
   </head>
-  <body>
+  <body ng-controller="SliderController">
     <!-- <img src="/http://whoisgarybledsoe.com/wp-content/uploads/2014/04/business-growth-vector-background-free.jpg" class="img-responsive" alt="" /> -->
     <div class="container-fluid">
 
@@ -22,9 +22,9 @@
           </div>
         </div>
         <div class="col col-xs-offset-10">
-          <button class="btn homebutton" type="button" name="button"><a href="#/login" ng-show="!isLoggedIn()">Login</a></button>
-          <button class="btn homebutton" type="button" name="button"><a href="#/register" ng-show="!isLoggedIn()">Signup</a></button>
-          <button class="btn homebutton" type="button" name="button"><a ng-show="isLoggedIn()" ng-click="logout()">Logout</a></button>
+          <button ng-show="!isLoggedIn()" class="btn directbutton homebutton" type="button" name="button"><a href="#/login" >Login</a></button>
+          <button ng-show="!isLoggedIn()" class="btn directbutton homebutton" type="button" name="button"><a href="#/register" >Signup</a></button>
+          <button ng-show="isLoggedIn()" class="btn directbutton homebutton" type="button" name="button"><a ng-click="logout()">Logout</a></button>
         </div>
 
       </div>
@@ -39,16 +39,19 @@
             </ul>
           </div>
         </div>
+        <div class="clearfix visible-xs"></div>
+        <!-- <h1>Slider Using AngularJS</h1> -->
+        <!-- <slider images="images" /> -->
 
       <ng-view></ng-view>
 
     </div>
-
     <script src="js/angular.js"></script>
     <script src="js/angular-cookies.js"></script>
     <script src="js/angular-messages.js"></script>
     <script src="js/angular-route.js"></script>
     <script src="js/client.js"></script>
+    <script src="http://code.angularjs.org/1.5.7/angular-animate.min.js"></script>
   </body>
 </html>
 

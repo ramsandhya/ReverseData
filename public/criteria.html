@@ -1,4 +1,52 @@
+<div class="row">
+  <div class="col col-xs-12 text-center">
+    <div class="panel">
+      <br>
+      <div class="row">
+        <div class="col col-xs-2">
+          <button ng-click="createCriteria()" class=" newcriteriabutton btn" >Create New Criteria</button>
+        </div>
+        <div class="col col-xs-8">
+          <h4 class="edit">Criteria List</h4>
+        </div>
+        <div class="col col-xs-2">
+        </div>
+      </div>
 
+      <div class="well mywell criteriawell">
+        <div class="row">
+          <div class="col col-xs-3" ng-repeat="criteria in criterias">
+            <div class="panel panel-success criteriapanel" >
+              <p class="panel-heading">{{criteria.criteriaName}}</p>
+              <button ng-click="editCriteria(criteria)" class="homebutton btn" >Edit criteria</button>
+              <!-- <button ng-click="generateData(criteria._id)" class="homebutton btn">Generate</button>
+              <button ng-click="pushData(criteria._id)" class="homebutton btn">Push to Salesforce</button> -->
+              <div class="row">
+                <div class="col col-xs-4 text-right">
+                  <p>Industry</p>
+                </div>
+                <div class="col col-xs-4 text-left">
+                  <p>{{criteria.industryType}}</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col col-xs-4 text-right">
+                  <p>Chart Type</p>
+                </div>
+                <div class="col col-xs-4 text-left">
+                  <p>{{criteria.chartType}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--
 <div class="row">
   <div class="col col-xs-8 text-center">
     <h4 class="edit">Criteria List</h4>
@@ -101,4 +149,4 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->

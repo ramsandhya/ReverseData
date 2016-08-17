@@ -11,7 +11,10 @@
               <p>Criteria Name</p>
             </div>
             <div class="col col-xs-6 text-left">
-              <input type="text" ng-model="criteriaName" placeholder="Name of Criteria">
+              <input type="text" ng-model={{criteria.criteriaName}} placeholder="Name of Criteria">
+              <p>
+                {{criteria.criteriaName}}
+              </p>
             </div>
           </div>
 
@@ -20,7 +23,7 @@
               <p>Object API Name</p>
             </div>
             <div class="col col-xs-6 text-left">
-              <input type="text" ng-model="objectApiName"></input>
+              <input type="text" ng-model="criteria.objectApiName"></input>
             </div>
           </div>
 
@@ -31,12 +34,12 @@
             <div class="col col-xs-6 text-left">
               <select ng-model="industryType" required>
                 <option value="Retail">Retail</option>
-                <option value="pharmaceutical">Pharmaceutical</option>
-                <option value="humanresource">Human Resource</option>
-                <option value="insurance">Insurance</option>
-                <option value="financial">Financial</option>
-                <option value="manufacturing">Manufacturing</option>
-                <option value="service">Service</option>
+                <option value="Pharmaceutical">Pharmaceutical</option>
+                <option value="Humanresource">Human Resource</option>
+                <option value="Insurance">Insurance</option>
+                <option value="Financial">Financial</option>
+                <option value="Manufacturing">Manufacturing</option>
+                <option value="Service">Service</option>
               </select>
             </div>
           </div>
@@ -108,9 +111,9 @@
             </div>
             <div class="col col-xs-6 text-left">
               <select ng-model="chartType" required>
-                <option>Linear</option>
-                <option value="parabolic">Parabolic</option>
-                <option value="exponential">Exponential</option>
+                <option value="Linear">Linear</option>
+                <option value="Parabolic">Parabolic</option>
+                <option value="Exponential">Exponential</option>
               </select>
             </div>
           </div>
@@ -120,7 +123,7 @@
           </div>
         </div>
         <div class="col col-xs-6 graph">
-          <button ng-click="createCriteria()" type="button" class="homebutton btn">My Criteria List</button>
+          <button ng-click="getCriteria()" type="button" class="homebutton btn">My Criteria List</button>
           <img src="http://aspire.sharesinv.com.s3-ap-southeast-1.amazonaws.com/wp-content/uploads/2016/01/18104700/img_471x347_blue_colored_chart_arrow_up-471x347.png" class="img-responsive criteria-image">
         </div>
       </div>

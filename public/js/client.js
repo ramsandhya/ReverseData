@@ -1,4 +1,44 @@
-var reverseDataApp = angular.module('reverseDataApp',['ngRoute', 'ngCookies', 'ngMessages']);
+var reverseDataApp = angular.module('reverseDataApp',['ngRoute', 'ngCookies', 'ngMessages', 'ngAnimate']);
+
+reverseDataApp.directive('slider', function($timeout) {
+  return {
+    restrict: 'AE',
+    replace: true,
+    scope: {
+      images: '='
+    },
+    link: function(scope, elem, attrs) {
+      scope.currentIndex = 0; // Initially the index is at the first image
+
+      scope.next = function() {
+        scope.currentIndex < scope.images.length - 1 ? scope.currentIndex++ : scope.currentIndex = 0;
+      };
+
+      scope.prev = function() {
+        scope.currentIndex > 0 ? scope.currentIndex-- : scope.currentIndex = scope.images.length - 1;
+      };
+
+      scope.$watch('currentIndex', function() {
+      scope.images.forEach(function(image) {
+        image.visible = false; // make every image invisible
+      });
+
+      scope.images[scope.currentIndex].visible = true; // make the current image visible
+      });
+      var timer;
+      var sliderFunc = function() {
+      timer = $timeout(function() {
+        scope.next();
+        timer = $timeout(sliderFunc, 5000);
+      }, 5000);
+      };
+
+      sliderFunc();
+    },
+    templateUrl: 'templateurl.html'
+  };
+});
+
 
 reverseDataApp.config(function($routeProvider){
   $routeProvider
@@ -11,19 +51,22 @@ reverseDataApp.config(function($routeProvider){
     controller: 'CriteriaController',
     templateUrl: 'criteria.html'
   })
-  .when('/edit', {
-    controller: 'EditController',
-    templateUrl: 'edit.html'
+  .when('/editcriteria/:criteriaId', {
+    controller: 'EditCriteriaController',
+    templateUrl: 'editcriteria.html'
   })
   .when('/register', {
     controller: 'RegisterController',
-    templateUrl: 'register.html',
+    templateUrl: 'register.html'
   })
-  .when('/data', {
-    controller: 'DataController',
-    templateUrl: 'data.html',
+  .when('/newcriteria', {
+    controller: 'NewCriteriaController',
+    templateUrl: 'newcriteria.html'
   })
-
+  .when('/templateurl', {
+    conroller: 'SliderController',
+    templateUrl: 'templateurl.html'
+  })
   .otherwise({redirectTo: '/'});
 });
 
@@ -34,8 +77,9 @@ reverseDataApp.run(function($rootScope, $location, $cookies) {
     var path = nextUrl.split('/')[4];
     // if user is going to a restricted area and doesn't have a token stored in a cookie, redirect to the login page
     var token = $cookies.get('token');
-    if (!token && (path === 'criteria' || path === 'edit')) {
+    if (!token && (path === 'criteria' || path === 'editcriteria' || path === 'newcriteria')) {
       $rootScope.goHere = path;
+      console.log("redirecting");
       $location.path('/');
     }
 
@@ -108,7 +152,7 @@ reverseDataApp.controller('RegisterController', function($scope, $location, $htt
   }
 });
 
-reverseDataApp.controller('EditController', function($scope, $http, $location){
+reverseDataApp.controller('NewCriteriaController', function($scope, $http, $location){
   $scope.objectApiName = "Opportunity";
   $scope.createCriteria = function(){
     var data = {
@@ -138,22 +182,95 @@ reverseDataApp.controller('EditController', function($scope, $http, $location){
         console.log(err);
       })
   }
+
+  $scope.createCriteria = function(){
+    console.log("clicked");
+    $location.path("/criteria");
+  };
+
 });
 
+reverseDataApp.controller('EditCriteriaController', function($scope, $http, $location, $routeParams){
+
+  $scope.getCriteria = function(){
+    console.log("clicked");
+    $location.path("/criteria");
+  };
+
+    $http.get('/editCriteria/'+ $routeParams.criteriaId)
+      .then(function(results) {
+        console.log(results);
+        $scope.criterias = results.data.criteria;
+      })
+      .catch(function(err) {
+        console.log(err);
+      })
+
+
+
+  $scope.objectApiName = "Opportunity";
+  $scope.createCriteria = function(){
+    var data = {
+      criteriaName: $scope.criteriaName,
+      objectApiName: $scope.objectApiName,
+      industryType: $scope.industryType,
+      amountFrom: $scope.amountFrom,
+      amountTo: $scope.amountTo,
+      dataCreatedDateFrom: $scope.dataCreatedDateFrom,
+      dataCreatedDateTo: $scope.dataCreatedDateTo,
+      opportunityCloseRangeFrom: $scope.opportunityCloseRangeFrom,
+      opportunityCloseRangeTo: $scope.opportunityCloseRangeTo,
+      numberOfRecords: $scope.numberOfRecords,
+      chartType: $scope.chartType
+    };
+    console.log(data);
+    $http.post('/createCriteria', data)
+      .then(function(response) {
+        if (response.status === 200) {
+          // user successfully created
+          $scope.created = true;
+          console.log("criteria created");
+          $location.path('/criteria');
+        }
+      })
+      .catch(function(err) {
+        console.log(err);
+      })
+  };
+});
+
+
 reverseDataApp.controller('CriteriaController', function($scope, $http, $location){
+  console.log("Came to the controller");
   $scope.criterias = null;
     $http.get('/fetchData')
-      .then(function(result){
-        console.log(result);
-        $scope.criterias = result.data.criteria;
+      .then(function(results){
+        console.log(results);
+        $scope.criterias = results.data.criteria;
       })
       .catch(function(err){
         $scope.criterias = [{err:"Could not load json criteria"}];
       });
+
       $scope.createCriteria = function(){
         console.log("clicked");
-        $location.path("/edit");
+        $location.path("/newcriteria");
       };
+
+      $scope.editCriteria = function(criteria){
+        console.log("Criteria is "+ criteria);
+        $location.path("/editcriteria/" + criteria._id);
+        $http.get('/editCriteria/'+ criteria._id)
+          .then(function(results) {
+            console.log(results);
+            $scope.criterias = results.data.criteria;
+          })
+          .catch(function(err) {
+            console.log(err);
+          })
+      }
+
+
       $scope.generateData = function(criteriaId){
         $http.post('/generate', {
           criteriaId: criteriaId
@@ -182,6 +299,23 @@ reverseDataApp.controller('CriteriaController', function($scope, $http, $locatio
           console.log(err);
         })
       }
+});
+
+reverseDataApp.controller('SliderController', function($scope) {
+  $scope.images = [{
+    alt: 'Some text',
+    title: 'Pic 1'
+  }, {
+    alt: 'Some text',
+    title: 'Pic 2'
+  }, {
+    alt: 'Some text',
+    title: 'Pic 3'
+  }, {
+    alt: 'Some text',
+    title: 'Pic 4'
+  }];
+
 });
 
   // // if they've registered and clicked the login button, redirect to the login page

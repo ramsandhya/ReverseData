@@ -10,7 +10,7 @@ h5{
     font-size: 1.4em;
 }
 .header {
-background-color: mistyrose;
+background-color: #e6fac9;
 width: auto;
 /*float: left;*/
 /*display: inline;*/
@@ -72,6 +72,13 @@ body{
   color: #3266b1;
   font-size: 18px;
 }
+.newcriteriabutton{
+  font-size: 18px;
+  background-color: orange;
+}
+.directbutton{
+  margin-top: 20px;
+}
 .homebutton:hover {
   color: black;
 }
@@ -92,10 +99,14 @@ body{
   border: 1px solid orange;
 }
 .criteriawell{
-  background-color: transparent;;
+  /*background-color: transparent;;*/
   overflow-x: scroll;
-  height: 420px;
-  border: 3px solid orange;
+  height: 100%;
+  /*border: 3px solid orange;*/
+}
+.criteriapanel{
+  float: left;
+  width: 100%;
 }
 .criteriaList{
   position: fixed;
@@ -113,8 +124,67 @@ h2{
   border: 2px solid orange;
   border-radius: 10px;
 margin-left: 5%;
+margin-top: 5px;
 }
 .navigation {
   background-color: #7fbf22;
   margin-top:2px;
+}
+
+.slide.ng-hide-add,
+.slide.ng-hide-remove {
+  -webkit-transition: all linear 0.5s;
+  -moz-transition: all linear 0.5s;
+  -o-transition: all linear 0.5s;
+  transition: all linear 0.5s;
+  display: block!important;
+}
+.slide.ng-hide-add.ng-hide-add-active,
+.slide.ng-hide-remove {
+  opacity: 0;
+}
+.slide.ng-hide-add,
+.slide.ng-hide-remove.ng-hide-remove-active {
+  opacity: 1;
+}
+* {
+  font-family: 'Open Sans', sans-serif;
+}
+.center-grey {
+  background: #f2f2f2;
+}
+.slider {
+  position: relative;
+  padding: 5px;
+  width: 610px;
+  margin: auto;
+  margin-top: 40px;
+}
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  box-shadow: 0px 0px 15px #999;
+}
+.arrows {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+}
+.arrows img {
+  height: 32px;
+}
+h1 {
+  text-align: center;
+  padding: 10px;
+  font-size: 270%;
+  color: #222;
+}
+.carousel-inner > .item > img,
+  .carousel-inner > .item > a > img {
+      width: 70%;
+      margin: auto;
+  }
+.footer{
+  background-color: gereen;
 }
