@@ -33,7 +33,7 @@
           <div ng-message="email">Invalid email address</div>
         </div>
         <br>
-        <button type="submit" class="btn homebutton" ng-disabled="registerForm.$invalid">Register</button>
+        <button id="special" type="submit" class="btn homebutton" ng-disabled="registerForm.$invalid">Register</button>
       </form>
       <p ng-show="registered">You've successfully registered and may now login. <button type="button" class="btn homebutton" ng-click="register()">Login</button></p>
     </div>
