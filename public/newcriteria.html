@@ -1,136 +1,138 @@
-<div class="row">
-  <div class="col col-xs-12 text-center">
-    <!-- <div class="well mywell"> -->
-    <div class="row">
-      <div class="col col-xs-2">
-        <br />
-        <span><a ng-href="/#/criteria">Back to Criteria List</a></span>
-      </div>
-      <div class="col col-xs-4">
-          <h4 class="edit">Create New Criteria</h4>
-      </div>
-    </div>
+<div class="well mywell">
+  <div class="row">
+    <div class="col col-xs-12 text-center">
+      <!-- <div class="well mywell"> -->
       <div class="row">
-        <div class="col col-xs-6">
-
-          <!-- Account section start -->
-          <div class="row">
-            <div class="col col-xs-6 text-right">
-              <p>Criteria Name</p>
-            </div>
-            <div class="col col-xs-6 text-left">
-              <input type="text" ng-model="criteriaName" placeholder="Name of Criteria">
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col col-xs-6 text-right">
-              <p>Object API Name</p>
-            </div>
-            <div class="col col-xs-6 text-left">
-              <input type="text" ng-model="objectApiName"></input>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col col-xs-6 text-right">
-              <p>Industry</p>
-            </div>
-            <div class="col col-xs-6 text-left">
-              <select ng-model="industryType" required>
-                <option value="Retail">Retail</option>
-                <option value="Pharmaceutical">Pharmaceutical</option>
-                <option value="Humanresource">Human Resource</option>
-                <option value="Insurance">Insurance</option>
-                <option value="Financial">Financial</option>
-                <option value="Manufacturing">Manufacturing</option>
-                <option value="Service">Service</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col col-xs-6 text-right">
-              <p>Amount From</p>
-            </div>
-            <div class="col col-xs-6 text-left">
-              <input type="Number" ng-model="amountFrom" placeholder="Start amount..">
-            </div>
-          </div>
-          <div class="row">
-            <div class="col col-xs-6 text-right">
-              <p>Amount To</p>
-            </div>
-            <div class="col col-xs-6 text-left">
-              <input type="Number" ng-model="amountTo" placeholder="End amount..">
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col col-xs-6 text-right">
-              <p>Created Date From (Data) </p>
-            </div>
-            <div class="col col-xs-6 text-left">
-              <input type="Date" ng-model="dataCreatedDateFrom">
-            </div>
-          </div>
-          <div class="row">
-            <div class="col col-xs-6 text-right">
-              <p>Created Date To (Data)</p>
-            </div>
-            <div class="col col-xs-6 text-left">
-              <input type="Date" ng-model="dataCreatedDateTo">
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col col-xs-6 text-right">
-              <p>Close Date Range From (Opportunity)</p>
-            </div>
-            <div class="col col-xs-6 text-left">
-              <input type="Number" ng-model="opportunityCloseRangeFrom">
-            </div>
-          </div>
-          <div class="row">
-            <div class="col col-xs-6 text-right">
-              <p>Close Date Range To(Opportunity)</p>
-            </div>
-            <div class="col col-xs-6 text-left">
-              <input type="Number" ng-model="opportunityCloseRangeTo" >
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col col-xs-6 text-right">
-              <p>Number of Records</p>
-            </div>
-            <div class="col col-xs-6 text-left">
-              <input type="Number" ng-model="numberOfRecords">
-            </div>
-          </div>
-
-          <!-- Account Section end -->
-          <div class="row">
-            <div class="col col-xs-6 text-right">
-              <p>Chart Type</p>
-            </div>
-            <div class="col col-xs-6 text-left">
-              <select ng-model="chartType" required>
-                <option value="Linear">Linear</option>
-                <option value="Parabolic">Parabolic</option>
-                <option value="Exponential">Exponential</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="row">
-            <button ng-click="createCriteria()" type="button" class="homebutton btn">Save Criteria</button>
-          </div>
+        <div class="col col-xs-2">
+          <br />
+          <span><a ng-href="/#/criteria">Back to Criteria List</a></span>
         </div>
-        <div class="col col-xs-6 graph">
-          <img src="http://aspire.sharesinv.com.s3-ap-southeast-1.amazonaws.com/wp-content/uploads/2016/01/18104700/img_471x347_blue_colored_chart_arrow_up-471x347.png" class="img-responsive criteria-image">
+        <div class="col col-xs-4">
+            <h4 class="edit">Create New Criteria</h4>
         </div>
       </div>
-    <!-- </div> -->
+        <div class="row">
+          <div class="col col-xs-6">
+
+            <!-- Account section start -->
+            <div class="row">
+              <div class="col col-xs-6 text-right">
+                <p>Criteria Name</p>
+              </div>
+              <div class="col col-xs-6 text-left">
+                <input type="text" ng-model="criteriaName" placeholder="Name of Criteria">
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col col-xs-6 text-right">
+                <p>Object API Name</p>
+              </div>
+              <div class="col col-xs-6 text-left">
+                <input type="text" ng-model="objectApiName"></input>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col col-xs-6 text-right">
+                <p>Industry</p>
+              </div>
+              <div class="col col-xs-6 text-left">
+                <select ng-model="industryType" required>
+                  <option value="Retail">Retail</option>
+                  <option value="Pharmaceutical">Pharmaceutical</option>
+                  <option value="Humanresource">Human Resource</option>
+                  <option value="Insurance">Insurance</option>
+                  <option value="Financial">Financial</option>
+                  <option value="Manufacturing">Manufacturing</option>
+                  <option value="Service">Service</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col col-xs-6 text-right">
+                <p>Amount From</p>
+              </div>
+              <div class="col col-xs-6 text-left">
+                <input type="Number" ng-model="amountFrom" placeholder="Start amount..">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col col-xs-6 text-right">
+                <p>Amount To</p>
+              </div>
+              <div class="col col-xs-6 text-left">
+                <input type="Number" ng-model="amountTo" placeholder="End amount..">
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col col-xs-6 text-right">
+                <p>Created Date From (Data) </p>
+              </div>
+              <div class="col col-xs-6 text-left">
+                <input type="Date" ng-model="dataCreatedDateFrom">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col col-xs-6 text-right">
+                <p>Created Date To (Data)</p>
+              </div>
+              <div class="col col-xs-6 text-left">
+                <input type="Date" ng-model="dataCreatedDateTo">
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col col-xs-6 text-right">
+                <p>Close Date Range From (Opportunity)</p>
+              </div>
+              <div class="col col-xs-6 text-left">
+                <input type="Number" ng-model="opportunityCloseRangeFrom">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col col-xs-6 text-right">
+                <p>Close Date Range To(Opportunity)</p>
+              </div>
+              <div class="col col-xs-6 text-left">
+                <input type="Number" ng-model="opportunityCloseRangeTo" >
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col col-xs-6 text-right">
+                <p>Number of Records</p>
+              </div>
+              <div class="col col-xs-6 text-left">
+                <input type="Number" ng-model="numberOfRecords">
+              </div>
+            </div>
+
+            <!-- Account Section end -->
+            <div class="row">
+              <div class="col col-xs-6 text-right">
+                <p>Chart Type</p>
+              </div>
+              <div class="col col-xs-6 text-left">
+                <select ng-model="chartType" required>
+                  <option value="Linear">Linear</option>
+                  <option value="Parabolic">Parabolic</option>
+                  <option value="Exponential">Exponential</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="row">
+              <button ng-click="createCriteria()" type="button" class="homebutton btn">Save Criteria</button>
+            </div>
+          </div>
+          <div class="col col-xs-6 graph">
+            <img src="http://aspire.sharesinv.com.s3-ap-southeast-1.amazonaws.com/wp-content/uploads/2016/01/18104700/img_471x347_blue_colored_chart_arrow_up-471x347.png" class="img-responsive criteria-image">
+          </div>
+        </div>
+      <!-- </div> -->
+    </div>
   </div>
 </div>

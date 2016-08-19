@@ -124,6 +124,10 @@ reverseDataApp.controller('HomeController', function($scope, $location, $http, $
   $scope.registration = function(){
     $location.path("/register");
   };
+  $scope.getCriteria = function(){
+    console.log("clicked");
+    $location.path("/criteria");
+  };
 });
 
 // reverseDataApp.controller('CriteriaController', function($scope, $location) {
@@ -208,7 +212,7 @@ reverseDataApp.controller('EditCriteriaController', function($scope, $http, $loc
 
 
   $scope.objectApiName = "Opportunity";
-  $scope.getCriteria = function(){
+  $scope.createCriteria = function(){
     var data = {
       criteriaName: $scope.criteriaName,
       objectApiName: $scope.objectApiName,

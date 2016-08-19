@@ -1,123 +1,125 @@
-<div class="row">
-
-  <div class="col col-xs-12 text-center">
-    <div class="row">
-      <div class="col col-xs-2">
-        <br />
-        <span><a ng-href="/#/criteria">Back to Criteria List</a></span>
+<div class="well mywell">
+  <div class="row">
+    <div class="col col-xs-12 text-center">
+      <div class="row">
+        <div class="col col-xs-2">
+          <br />
+          <span><a ng-href="/#/criteria">Back to Criteria List</a></span>
+        </div>
+        <div class="col col-xs-4">
+            <h4 class="edit">{{criteria.criteriaName}} Criteria Detail</h4>
+        </div>
       </div>
-      <div class="col col-xs-4">
-          <h4 class="edit">{{criteria.criteriaName}} Criteria Detail</h4>
-      </div>
-    </div>
 
-    <div class="well mywell criteriawell">
-        <div class="row" >
-          <div class="col col-xs-4 text-right">
-            <p>Criteria Name</p>
+      <div class="well mywell criteriawell">
+          <div class="row" >
+            <div class="col col-xs-4 text-right">
+              <p>Criteria Name</p>
+            </div>
+            <div class="col col-xs-4 text-left">
+              <p>{{criteria.criteriaName}}</p>
+            </div>
           </div>
-          <div class="col col-xs-4 text-left">
-            <p>{{criteria.criteriaName}}</p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col col-xs-4 text-right">
-            <p>Object API Name</p>
-          </div>
-          <div class="col col-xs-4 text-left">
-            <p>{{criteria.objectApiName}}</p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col col-xs-4 text-right">
-            <p>Industry</p>
-          </div>
-          <div class="col col-xs-4 text-left">
-            <p>{{criteria.industryType}}</p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col col-xs-4 text-right">
-            <p>Amount From</p>
-          </div>
-          <div class="col col-xs-4 text-left">
-            <p>{{criteria.amountFrom | currency}}</p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col col-xs-4 text-right">
-            <p>Amount To</p>
-          </div>
-          <div class="col col-xs-4 text-left">
-            <p>{{criteria.amountTo | currency}}</p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col col-xs-4 text-right">
-            <p>Created Date From (Data)</p>
-          </div>
-          <div class="col col-xs-4 text-left">
-            <p>{{criteria.dataCreatedDateFrom | date:'medium'}}</p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col col-xs-4 text-right">
-            <p>Created Date To (Data)</p>
-          </div>
-          <div class="col col-xs-4 text-left">
-            <p>{{criteria.dataCreatedDateTo | date:'medium'}}</p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col col-xs-4 text-right">
-            <p>Close Date Range From (Opportunity)</p>
-          </div>
-          <div class="col col-xs-4 text-left">
-            <p>{{criteria.opportunityCloseRangeFrom}} days</p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col col-xs-4 text-right">
-            <p>Close Date Range To (Opportunity)</p>
-          </div>
-          <div class="col col-xs-4 text-left">
-            <p>{{criteria.opportunityCloseRangeTo}} days</p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col col-xs-4 text-right">
-            <p>Number of Records</p>
-          </div>
-          <div class="col col-xs-4 text-left">
-            <p>{{criteria.numberOfRecords}}</p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col col-xs-4 text-right">
-            <p>Chart Type</p>
-          </div>
-          <div class="col col-xs-4 text-left">
-            <p>{{criteria.chartType}}</p>
-          </div>
-        </div>
-        <div class="row">
           <div class="row">
-            <div class="col col-xs-offset-3 col-xs-3">
-              <button id="generatebtn" ng-click="generateData(criteria._id)" class="homebutton btn">Generate</button>
+            <div class="col col-xs-4 text-right">
+              <p>Object API Name</p>
             </div>
-            <div id="pushbtn" class="col col-xs-2">
-              <button ng-click="pushData(criteria._id)" class="homebutton btn">Push to Salesforce</button>
+            <div class="col col-xs-4 text-left">
+              <p>{{criteria.objectApiName}}</p>
             </div>
-
           </div>
-        </div>
-        <div class="row">
-          <br/>
-          <p ng-show="generatingData">Please wait while data is being generated ....</p>
-          <p ng-show="generatedData">Data was generated successfully</p>
-          <p ng-show="pushingData">Please wait while data is being pushed to Salesforce ....</p>
-          <p ng-show="pushedData">Data was pushed to Salesforce successfully</p>
-        </div>
+          <div class="row">
+            <div class="col col-xs-4 text-right">
+              <p>Industry</p>
+            </div>
+            <div class="col col-xs-4 text-left">
+              <p>{{criteria.industryType}}</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col col-xs-4 text-right">
+              <p>Amount From</p>
+            </div>
+            <div class="col col-xs-4 text-left">
+              <p>{{criteria.amountFrom | currency}}</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col col-xs-4 text-right">
+              <p>Amount To</p>
+            </div>
+            <div class="col col-xs-4 text-left">
+              <p>{{criteria.amountTo | currency}}</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col col-xs-4 text-right">
+              <p>Created Date From (Data)</p>
+            </div>
+            <div class="col col-xs-4 text-left">
+              <p>{{criteria.dataCreatedDateFrom | date:'medium'}}</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col col-xs-4 text-right">
+              <p>Created Date To (Data)</p>
+            </div>
+            <div class="col col-xs-4 text-left">
+              <p>{{criteria.dataCreatedDateTo | date:'medium'}}</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col col-xs-4 text-right">
+              <p>Close Date Range From (Opportunity)</p>
+            </div>
+            <div class="col col-xs-4 text-left">
+              <p>{{criteria.opportunityCloseRangeFrom}} days</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col col-xs-4 text-right">
+              <p>Close Date Range To (Opportunity)</p>
+            </div>
+            <div class="col col-xs-4 text-left">
+              <p>{{criteria.opportunityCloseRangeTo}} days</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col col-xs-4 text-right">
+              <p>Number of Records</p>
+            </div>
+            <div class="col col-xs-4 text-left">
+              <p>{{criteria.numberOfRecords}}</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col col-xs-4 text-right">
+              <p>Chart Type</p>
+            </div>
+            <div class="col col-xs-4 text-left">
+              <p>{{criteria.chartType}}</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="row">
+              <div class="col col-xs-offset-3 col-xs-3">
+                <button id="generatebtn" ng-click="generateData(criteria._id)" class="homebutton btn">Generate</button>
+              </div>
+              <div id="pushbtn" class="col col-xs-2">
+                <button ng-click="pushData(criteria._id)" class="homebutton btn">Push to Salesforce</button>
+              </div>
+
+            </div>
+          </div>
+          <div class="row">
+            <br/>
+            <p ng-show="generatingData">Please wait while data is being generated ....</p>
+            <p ng-show="generatedData">Data was generated successfully</p>
+            <p ng-show="pushingData">Please wait while data is being pushed to Salesforce ....</p>
+            <p ng-show="pushedData">Data was pushed to Salesforce successfully</p>
+          </div>
+      </div>
     </div>
   </div>
+
 </div>
