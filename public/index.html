@@ -10,54 +10,62 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="/css/style.css">
   </head>
-  <body ng-controller="SliderController">
-    <div class="container-fluid">
-      <div class="forfooter panel panel-default">
-      <div class="row header">
-        <div class="col col-xs-12">
-          <div class="col-xs-6">
-            <h3 class="header">ReverseData</h3>
-          </div>
-          <div class="col-xs-6">
-            <div class="col pull-right col-xs-6 ">
-              <button ng-show="!isLoggedIn()" class="btn directbutton homebutton" type="button" name="button"><a href="#/login" >Login</a></button>
-              <button ng-show="!isLoggedIn()" class="btn directbutton homebutton" type="button" name="button"><a href="#/register" >Signup</a></button>
-              <button ng-show="isLoggedIn()" class="btn directbutton homebutton" type="button" name="button"><a ng-click="logout()">Logout</a></button>
+  <body data-spy="scroll" data-target=".navbar" data-offset="50" ng-controller="SliderController">
+      <nav class="navbar navbar-inverse navbar-fixed-top bgcolor" style="max-height:20%;">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+
+          </button>
+        </div>
+
+        <div class="container-fluid" style="margin-left:20%; margin-right:20%;">
+          <div class="row header">
+            <h3 class="header pull-left">ReverseData</h3>
+              <div class="pull-right">
+                <div class="col pull-right">
+                  <button ng-show="!isLoggedIn()" class="btn directbutton homebutton" type="button" name="button"><a href="#/login" >Login</a></button>
+                  <button ng-show="!isLoggedIn()" class="btn directbutton homebutton" type="button" name="button"><a href="#/register" >Signup</a></button>
+                  <button ng-show="isLoggedIn()" class="btn directbutton homebutton" type="button" name="button"><a ng-click="logout()">Logout</a></button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-
-        <div class="row navigation">
-          <div class="col col-xs-9">
-            <ul class="nav nav-pills " >
-              <li role="presentation" ng-class="{active: activetab }"><a ng-href="/#/criteria">Home</a></li>
-              <li role="presentation" ng-class="{active: activetab }"><a ng-href="/#/criteria">Criteria</a></li>
-              <li role="presentation" ng-class="{active: activetab }"><a href="#/">About us </a></li>
-              <li role="presentation" ng-class="{active: activetab }"><a href="#/">Contact us</a></li>
-            </ul>
-          </div>
+      </nav>
+      <!--div class="row navigation">
+        <div class="col col-xs-9">
+          <ul class="nav nav-pills " >
+            <li role="presentation" ng-class="{active: activetab }"><a ng-href="/#/criteria">Home</a></li>
+            <li role="presentation" ng-class="{active: activetab }"><a ng-href="/#/criteria">Criteria</a></li>
+            <li role="presentation" ng-class="{active: activetab }"><a href="#/">About us </a></li>
+            <li role="presentation" ng-class="{active: activetab }"><a href="#/">Contact us</a></li>
+          </ul>
         </div>
-        <div class="clearfix visible-xs"></div>
-        <!-- <h1>Slider Using AngularJS</h1> -->
-        <!-- <slider images="images" /> -->
-
+      </div-->
+      <br><br><br><br>
+      <br>
       <ng-view></ng-view>
 
+    <nav class="navbar navbar-inverse navbar-fixed-bottom">
+      <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+
+        </button>
+      </div>
+      <div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          @copyright  ReverseData
+          <a href="https://plus.google.com/" target="_blank" title="Google +"><i class="fa fa-google-plus" aria-hidden="true"></i></i></a>
+          <a href="https://youtube.com/" target="_blank" title="YouTube"><i class="fa fa-youtube" aria-hidden="true"></i></a>
+          <a href="https://www.facebook.com/" target="_blank" title="Facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+          <a href="https://www.pinterest/" target="_blank" title="Pinterest"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
+          <a href="https://twitter.com/" target="_blank" title="Twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+        </div>
+      </div>
+    </nav>
 
 
-</div>
-<div class="panel-footer">
-      <div class="socialicons">
-              @copyright  ReverserData
-              <a href="https://plus.google.com/" target="_blank" title="Google +"><i class="fa fa-google-plus" aria-hidden="true"></i></i></a>
-              <a href="https://youtube.com/" target="_blank" title="YouTube"><i class="fa fa-youtube" aria-hidden="true"></i></a>
-              <a href="https://www.facebook.com/" target="_blank" title="Facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-              <a href="https://www.pinterest/" target="_blank" title="Pinterest"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
-              <a href="https://twitter.com/" target="_blank" title="Twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-            </div>
 
-    </div>
 
 
     <script src="js/angular.js"></script>
@@ -81,3 +89,7 @@
   </li>
   ...
 </ul> -->
+
+          <!-- <div class="clearfix visible-xs"></div> -->
+          <!-- <h1>Slider Using AngularJS</h1> -->
+          <!-- <slider images="images" /> -->

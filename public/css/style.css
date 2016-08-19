@@ -1,5 +1,5 @@
 @media (max-width: @screen-xs) {
-    body{font-size: 10px;}
+    body{font-size: 10px; margin-left: 5%; margin-right: 5%;}
 }
 
 @media (max-width: @screen-sm) {
@@ -16,7 +16,8 @@ background-color: #e6fac9;
 h3{
   font-size: 300%;
   font-family: fantasy;
-  color: #3266b1;
+  color: white;
+  font-weight: 100;
 }
 h4{
   color: white;
@@ -25,12 +26,15 @@ h4{
   color: #0da866;
   font-size: 25px;
 }
+.navbar-fixed-bottom{
+  background-color: #e6fac9;
+}
 .container-fluid{
   margin-top: 1%;
 }
 
 .forfooter{
-  margin-bottom: 400px;
+  margin: auto;
 }
 .panel-footer{
   background-color: #e6fac9;
@@ -83,7 +87,7 @@ body{
 }
 .newcriteriabutton{
   font-size: 18px;
-  background-color: orange;
+  background-color: #189cbc;
 }
 .directbutton{
   margin-top: 20px;
@@ -187,7 +191,6 @@ margin-top: 5px;
   height: 32px;
 }
 h1 {
-  padding: 10px;
   font-size: 270%;
   color: #222;
 }
@@ -196,6 +199,8 @@ h1 {
       width: 70%;
       margin: auto;
   }
-.footer{
-  background-color: gereen;
+
+
+.bgcolor {
+  background-color: #629119 !important;
 }

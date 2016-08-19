@@ -1,22 +1,23 @@
+
 <div class="well mywell">
   <div class="row">
     <div class="col col-xs-12 text-center">
       <div class="panel">
-        <br>
+        
         <div class="row">
-          <div class="col col-xs-2">
+          <div class="col col-lg-2">
             <button ng-click="getCriteriaPage()" class=" newcriteriabutton btn" >Create New Criteria</button>
           </div>
-          <div class="col col-xs-8">
+          <div class="col col-lg-8">
             <h4 class="edit">Criteria List</h4>
           </div>
-          <div class="col col-xs-2">
+          <div class="col col-lg-2">
           </div>
         </div>
 
         <div class="well mywell criteriawell">
           <div class="row">
-            <div class="col col-xs-3" ng-repeat="criteria in criterias">
+            <div ng-repeat="criteria in criterias">
               <div class="panel panel-success criteriapanel" >
                 <button ng-click="editCriteria(criteria)" class=" pull-left criteriaButton homebutton btn" ><span class="glyphicon glyphicon-pencil" ></span></button>
                 <button ng-click="deleteCriteria(criteria)" class=" pull-right criteriaButton homebutton btn" ><span class="glyphicon glyphicon-remove" ></span></button>
@@ -25,20 +26,14 @@
 
                 <!-- <button ng-click="generateData(criteria._id)" class="homebutton btn">Generate</button>
                 <button ng-click="pushData(criteria._id)" class="homebutton btn">Push to Salesforce</button> -->
-                <div class="row table">
-                  <div class="col col-xs-4 text-right">
-                    <p>Industry</p>
-                  </div>
-                  <div class="col col-xs-4 text-left">
-                    <p>{{criteria.industryType}}</p>
+                <div class="row">
+                  <div class="col col-sm-4">
+                    <label>Industry</label>: {{criteria.industryType}}
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col col-xs-4 text-right">
-                    <p>Chart Type</p>
-                  </div>
-                  <div class="col col-xs-4 text-left">
-                    <p>{{criteria.chartType}}</p>
+                  <div class="col col-lg-4">
+                    <label>Chart Type</label>: {{criteria.chartType}}
                   </div>
                 </div>
                 <div class="row">
