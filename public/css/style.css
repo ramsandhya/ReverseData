@@ -91,7 +91,8 @@ body{
 }
 .directbutton{
   margin-top: 20px;
-  margin-left: 5px
+  margin-left: 5px;
+  background-color: white;
 }
 .homebutton:hover {
   color: black;
@@ -107,7 +108,7 @@ body{
   height: 100%;
   background-color: white;
   overflow-x: scroll;
-  height: 780px;
+  height: 900px;
 }
 .childwell{
   background-color: seashell;
