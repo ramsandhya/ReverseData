@@ -42,7 +42,7 @@ h4{
 }
 
 body{
-  background-image: url("http://www.grandespymes.com.ar/wp-content/uploads/2016/06/crecimiento-de-una-empresa.jpg");
+  /*background-image: url("http://www.grandespymes.com.ar/wp-content/uploads/2016/06/crecimiento-de-una-empresa.jpg");*/
   background-repeat:no-repeat;
   -webkit-background-size:cover;
   -moz-background-size:cover;
@@ -71,6 +71,12 @@ body{
   background-color: #7fbf22;
   color: #3266b1;
   font-size: 18px;
+}
+.criteriaButton{
+  background-color: #7fbf22;
+  color: #3266b1;
+  font-size: 18px;
+  padding-left: 10px;
 }
 .newcriteriabutton{
   font-size: 18px;
@@ -102,6 +108,7 @@ body{
   /*background-color: transparent;;*/
   overflow-x: scroll;
   height: 100%;
+  font-weight: bold;
   /*border: 3px solid orange;*/
 }
 .criteriapanel{
@@ -123,7 +130,7 @@ h2{
   background-color: transparent;
   border: 2px solid orange;
   border-radius: 10px;
-margin-left: 5%;
+margin-left: 11%;
 margin-top: 5px;
 }
 .navigation {

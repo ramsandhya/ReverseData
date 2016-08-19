@@ -63,6 +63,10 @@ reverseDataApp.config(function($routeProvider){
     controller: 'NewCriteriaController',
     templateUrl: 'newcriteria.html'
   })
+  .when('/criteriadetail/:criteriaId', {
+    controller: 'CriteriaDetailController',
+    templateUrl: 'criteriadetail.html'
+  })
   .when('/templateurl', {
     conroller: 'SliderController',
     templateUrl: 'templateurl.html'
@@ -183,11 +187,6 @@ reverseDataApp.controller('NewCriteriaController', function($scope, $http, $loca
       })
   }
 
-  $scope.createCriteria = function(){
-    console.log("clicked");
-    $location.path("/criteria");
-  };
-
 });
 
 reverseDataApp.controller('EditCriteriaController', function($scope, $http, $location, $routeParams){
@@ -200,7 +199,7 @@ reverseDataApp.controller('EditCriteriaController', function($scope, $http, $loc
     $http.get('/editCriteria/'+ $routeParams.criteriaId)
       .then(function(results) {
         console.log(results);
-        $scope.criterias = results.data.criteria;
+        $scope.criteria = results.data.criteria;
       })
       .catch(function(err) {
         console.log(err);
@@ -209,7 +208,7 @@ reverseDataApp.controller('EditCriteriaController', function($scope, $http, $loc
 
 
   $scope.objectApiName = "Opportunity";
-  $scope.createCriteria = function(){
+  $scope.getCriteria = function(){
     var data = {
       criteriaName: $scope.criteriaName,
       objectApiName: $scope.objectApiName,
@@ -242,63 +241,154 @@ reverseDataApp.controller('EditCriteriaController', function($scope, $http, $loc
 
 reverseDataApp.controller('CriteriaController', function($scope, $http, $location){
   console.log("Came to the controller");
-  $scope.criterias = null;
-    $http.get('/fetchData')
-      .then(function(results){
-        console.log(results);
-        $scope.criterias = results.data.criteria;
+  // $scope.criterias = null;
+  $scope.objectApiName = "Opportunity";
+  $scope.createCriteria = function(){
+    var data = {
+      criteriaName: $scope.criteriaName,
+      objectApiName: $scope.objectApiName,
+      industryType: $scope.industryType,
+      amountFrom: $scope.amountFrom,
+      amountTo: $scope.amountTo,
+      dataCreatedDateFrom: $scope.dataCreatedDateFrom,
+      dataCreatedDateTo: $scope.dataCreatedDateTo,
+      opportunityCloseRangeFrom: $scope.opportunityCloseRangeFrom,
+      opportunityCloseRangeTo: $scope.opportunityCloseRangeTo,
+      numberOfRecords: $scope.numberOfRecords,
+      chartType: $scope.chartType
+    };
+    console.log(data);
+    $http.post('/createCriteria', data)
+      .then(function(response) {
+        if (response.status === 200) {
+          // user successfully created
+          $scope.created = true;
+          console.log("criteria created");
+          $location.path('/criteria');
+        }
       })
-      .catch(function(err){
-        $scope.criterias = [{err:"Could not load json criteria"}];
-      });
+      .catch(function(err) {
+        console.log(err);
+      })
+  };
 
-      $scope.createCriteria = function(){
-        console.log("clicked");
-        $location.path("/newcriteria");
-      };
+  $http.get('/fetchData')
+  .then(function(results){
+    console.log(results);
+    $scope.criterias = results.data.criteria;
+  })
+  .catch(function(err){
+    $scope.criterias = [{err:"Could not load json criteria"}];
+  });
 
-      $scope.editCriteria = function(criteria){
-        console.log("Criteria is "+ criteria);
-        $location.path("/editcriteria/" + criteria._id);
-        $http.get('/editCriteria/'+ criteria._id)
-          .then(function(results) {
-            console.log(results);
-            $scope.criterias = results.data.criteria;
-          })
-          .catch(function(err) {
-            console.log(err);
-          })
+  $scope.createCriteria = function(){
+    console.log("clicked");
+    $location.path("/newcriteria");
+  };
+
+  $scope.getCriteriaPage = function(){
+    console.log("clicked");
+    $location.path("/newcriteria");
+  };
+
+  $scope.editCriteria = function(criteria){
+    console.log("Criteria is "+ criteria);
+    $location.path("/editcriteria/" + criteria._id);
+    $http.get('/editCriteria/'+ criteria._id)
+      .then(function(results) {
+        console.log(results);
+        $scope.criteria = results.data.criteria;
+      })
+      .catch(function(err) {
+        console.log(err);
+      })
+  };
+
+  $scope.deleteCriteria = function(criteria){
+    $http.get('/deleteCriteria/'+ criteria._id)
+      .then(function(results) {
+        console.log(results);
+        $scope.criteria = results.data.criteria;
+        $http.get('/fetchData')
+        .then(function(results){
+          console.log(results);
+          $scope.criterias = results.data.criteria;
+        })
+        .catch(function(err){
+          $scope.criterias = [{err:"Could not load json criteria"}];
+        });
+      })
+      .catch(function(err) {
+        console.log(err);
+      })
+  };
+
+  // $scope.getCriteriaDetail = function(criteriaId){
+  //   console.log("Criteria is "+ criteriaId);
+  //   $location.path("/criteriadetail/" + criteriaId);
+  //   $http.get('/editCriteria/'+ criteriaId)
+  //     .then(function(results) {
+  //       console.log(results);
+  //       $scope.criteria = results.data.criteria;
+  //     })
+  //     .catch(function(err) {
+  //       console.log(err);
+  //     })
+  // };
+});
+
+reverseDataApp.controller('CriteriaDetailController', function($scope, $http, $location, $routeParams){
+
+  $http.get('/editCriteria/'+ $routeParams.criteriaId)
+    .then(function(results) {
+      console.log(results);
+      $scope.criteria = results.data.criteria;
+    })
+    .catch(function(err) {
+      console.log(err);
+    });
+
+  $scope.generateData = function(criteriaId){
+    $scope.pushingData = false;
+    $scope.pushedData = false;
+    $scope.generatingData = true;
+    $http.post('/generate', {
+      criteriaId: criteriaId
+    })
+    .then(function(response) {
+      if (response.status === 200) {
+        // user successfully created
+        console.log("Yay");
+        $scope.generatingData = false;
+        $scope.generatedData = true;
       }
+    })
+    .catch(function(err) {
+      console.log(err);
+    })
+  };
 
+  $scope.pushData = function(criteriaId){
+    $scope.generatingData = false;
+    $scope.generatedData = false;
+    $scope.pushingData = true;
+    $http.get('/push',{
+      criteriaId: criteriaId
+    })
+    .then(function(response) {
+      if (response.status === 200) {
+        // user successfully created
+        console.log("Yay");
+        $scope.pushingData = false;
+        $scope.pushedData = true;
 
-      $scope.generateData = function(criteriaId){
-        $http.post('/generate', {
-          criteriaId: criteriaId
-        })
-        .then(function(response) {
-          if (response.status === 200) {
-            // user successfully created
-            console.log("Yay");
-          }
-        })
-        .catch(function(err) {
-          console.log(err);
-        })
       }
-      $scope.pushData = function(criteriaId){
-        $http.get('/push',{
-          criteriaId: criteriaId
-        })
-        .then(function(response) {
-          if (response.status === 200) {
-            // user successfully created
-            console.log("Yay");
-          }
-        })
-        .catch(function(err) {
-          console.log(err);
-        })
-      }
+    })
+    .catch(function(err) {
+      console.log(err);
+    })
+  };
+
 });
 
 reverseDataApp.controller('SliderController', function($scope) {

@@ -1,73 +1,21 @@
 <div class="row">
+
   <div class="col col-xs-12 text-center">
-    <div class="panel">
-      <br>
-      <div class="row">
-        <div class="col col-xs-2">
-          <button ng-click="getCriteriaPage()" class=" newcriteriabutton btn" >Create New Criteria</button>
-        </div>
-        <div class="col col-xs-8">
-          <h4 class="edit">Criteria List</h4>
-        </div>
-        <div class="col col-xs-2">
-        </div>
+    <div class="row">
+      <div class="col col-xs-2">
+        <br />
+        <span><a ng-href="/#/criteria">Back to Criteria List</a></span>
       </div>
-
-      <div class="well mywell criteriawell">
-        <div class="row">
-          <div class="col col-xs-3" ng-repeat="criteria in criterias">
-            <div class="panel panel-success criteriapanel" >
-              <button ng-click="editCriteria(criteria)" class=" pull-left criteriaButton homebutton btn" ><span class="glyphicon glyphicon-pencil" ></span></button>
-              <button ng-click="deleteCriteria(criteria)" class=" pull-right criteriaButton homebutton btn" ><span class="glyphicon glyphicon-remove" ></span></button>
-
-              <p class="panel-heading">{{criteria.criteriaName}}</p>
-
-              <!-- <button ng-click="generateData(criteria._id)" class="homebutton btn">Generate</button>
-              <button ng-click="pushData(criteria._id)" class="homebutton btn">Push to Salesforce</button> -->
-              <div class="row table">
-                <div class="col col-xs-4 text-right">
-                  <p>Industry</p>
-                </div>
-                <div class="col col-xs-4 text-left">
-                  <p>{{criteria.industryType}}</p>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col col-xs-4 text-right">
-                  <p>Chart Type</p>
-                </div>
-                <div class="col col-xs-4 text-left">
-                  <p>{{criteria.chartType}}</p>
-                </div>
-              </div>
-              <div class="row">
-                <a ng-href="/#/criteriadetail/{{criteria._id}}">View Details</a>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div class="col col-xs-4">
+          <h4 class="edit">{{criteria.criteriaName}} Criteria Detail</h4>
       </div>
     </div>
-  </div>
-</div>
 
-
-<!--
-<div class="row">
-  <div class="col col-xs-8 text-center">
-    <h4 class="edit">Criteria List</h4>
     <div class="well mywell criteriawell">
-
-      <div class="well childwell" ng-repeat="criteria in criterias">
         <div class="row" >
           <div class="col col-xs-4 text-right">
             <p>Criteria Name</p>
           </div>
-          <button ng-click="createCriteria()" class="homebutton btn" >Create/Edit</button>
-          <button ng-click="generateData(criteria._id)" class="homebutton btn">Generate</button>
-          <button ng-click="pushData(criteria._id)" class="homebutton btn">Push to Salesforce</button>
-
-
           <div class="col col-xs-4 text-left">
             <p>{{criteria.criteriaName}}</p>
           </div>
@@ -152,7 +100,24 @@
             <p>{{criteria.chartType}}</p>
           </div>
         </div>
-      </div>
+        <div class="row">
+          <div class="row">
+            <div class="col col-xs-offset-3 col-xs-3">
+              <button id="generatebtn" ng-click="generateData(criteria._id)" class="homebutton btn">Generate</button>
+            </div>
+            <div id="pushbtn" class="col col-xs-2">
+              <button ng-click="pushData(criteria._id)" class="homebutton btn">Push to Salesforce</button>
+            </div>
+
+          </div>
+        </div>
+        <div class="row">
+          <br/>
+          <p ng-show="generatingData">Please wait while data is being generated ....</p>
+          <p ng-show="generatedData">Data was generated successfully</p>
+          <p ng-show="pushingData">Please wait while data is being pushed to Salesforce ....</p>
+          <p ng-show="pushedData">Data was pushed to Salesforce successfully</p>
+        </div>
     </div>
   </div>
-</div> -->
+</div>

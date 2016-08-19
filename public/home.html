@@ -7,6 +7,7 @@
           <label class="label" for="username">Username:</label>
 
           <input type="text" ng-model="username" name="username" class="formInput" required/>
+          <br>
           <div ng-messages="loginForm.username.$error" ng-if="loginForm.username.$dirty">
             <div class="text-center" ng-message="required">Username is required</div>
           </div>

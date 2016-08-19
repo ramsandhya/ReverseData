@@ -1,9 +1,17 @@
 <div class="row">
   <div class="col col-xs-12 text-center">
-    <div class="well mywell">
+    <!-- <div class="well mywell"> -->
+    <div class="row">
+      <div class="col col-xs-2">
+        <br />
+        <span><a ng-href="/#/criteria">Back to Criteria List</a></span>
+      </div>
+      <div class="col col-xs-4">
+          <h4 class="edit">Edit Criteria</h4>
+      </div>
+    </div>
       <div class="row">
         <div class="col col-xs-6">
-          <p class="edit">Set the criteria</p>
 
           <!-- Account section start -->
           <div class="row">
@@ -11,10 +19,7 @@
               <p>Criteria Name</p>
             </div>
             <div class="col col-xs-6 text-left">
-              <input type="text" ng-model={{criteria.criteriaName}} placeholder="Name of Criteria">
-              <p>
-                {{criteria.criteriaName}}
-              </p>
+              <input type="text" ng-model="criteria.criteriaName" placeholder="Name of Criteria">
             </div>
           </div>
 
@@ -32,7 +37,7 @@
               <p>Industry</p>
             </div>
             <div class="col col-xs-6 text-left">
-              <select ng-model="industryType" required>
+              <select ng-model="criteria.industryType" required>
                 <option value="Retail">Retail</option>
                 <option value="Pharmaceutical">Pharmaceutical</option>
                 <option value="Humanresource">Human Resource</option>
@@ -49,7 +54,7 @@
               <p>Amount From</p>
             </div>
             <div class="col col-xs-6 text-left">
-              <input type="Number" ng-model="amountFrom" placeholder="Start amount..">
+              <input type="Number" ng-model="criteria.amountFrom" placeholder="Start amount..">
             </div>
           </div>
           <div class="row">
@@ -57,7 +62,7 @@
               <p>Amount To</p>
             </div>
             <div class="col col-xs-6 text-left">
-              <input type="Number" ng-model="amountTo" placeholder="End amount..">
+              <input type="Number" ng-model="criteria.amountTo" placeholder="End amount..">
             </div>
           </div>
 
@@ -66,7 +71,7 @@
               <p>Created Date From (Data) </p>
             </div>
             <div class="col col-xs-6 text-left">
-              <input type="Date" ng-model="dataCreatedDateFrom">
+              <input type="Date" datetime="MM/dd/yyyy" ng-model="criteria.dataCreatedDateFrom">
             </div>
           </div>
           <div class="row">
@@ -74,7 +79,7 @@
               <p>Created Date To (Data)</p>
             </div>
             <div class="col col-xs-6 text-left">
-              <input type="Date" ng-model="dataCreatedDateTo">
+              <input type="Date" datetime="MM/dd/yyyy" ng-model="criteria.dataCreatedDateTo">
             </div>
           </div>
 
@@ -83,7 +88,7 @@
               <p>Close Date Range From (Opportunity)</p>
             </div>
             <div class="col col-xs-6 text-left">
-              <input type="Number" ng-model="opportunityCloseRangeFrom">
+              <input type="Number" ng-model="criteria.opportunityCloseRangeFrom">
             </div>
           </div>
           <div class="row">
@@ -91,7 +96,7 @@
               <p>Close Date Range To(Opportunity)</p>
             </div>
             <div class="col col-xs-6 text-left">
-              <input type="Number" ng-model="opportunityCloseRangeTo" >
+              <input type="Number" ng-model="criteria.opportunityCloseRangeTo" >
             </div>
           </div>
 
@@ -100,7 +105,7 @@
               <p>Number of Records</p>
             </div>
             <div class="col col-xs-6 text-left">
-              <input type="Number" ng-model="numberOfRecords">
+              <input type="Number" ng-model="criteria.numberOfRecords">
             </div>
           </div>
 
@@ -110,7 +115,7 @@
               <p>Chart Type</p>
             </div>
             <div class="col col-xs-6 text-left">
-              <select ng-model="chartType" required>
+              <select ng-model="criteria.chartType" required>
                 <option value="Linear">Linear</option>
                 <option value="Parabolic">Parabolic</option>
                 <option value="Exponential">Exponential</option>
@@ -123,10 +128,9 @@
           </div>
         </div>
         <div class="col col-xs-6 graph">
-          <button ng-click="getCriteria()" type="button" class="homebutton btn">My Criteria List</button>
           <img src="http://aspire.sharesinv.com.s3-ap-southeast-1.amazonaws.com/wp-content/uploads/2016/01/18104700/img_471x347_blue_colored_chart_arrow_up-471x347.png" class="img-responsive criteria-image">
         </div>
       </div>
-    </div>
+    <!-- </div> -->
   </div>
 </div>

@@ -212,6 +212,21 @@ app.get('/editCriteria/:criteriaId', function(req, res){
       })
 });
 
+app.get('/deleteCriteria/:criteriaId', function(req, res){
+  var criteriaId = req.params.criteriaId;
+  console.log(criteriaId);
+  Criteria.remove({ _id: criteriaId })
+    .then(function(criteria){
+      if(!criteria){
+        throw new Error("Criteria not found");
+      } else {
+        return res.json({status: "OK", criteria: criteria});
+      }
+      })
+      .catch(function(err){
+        res.json({ "status": "fail", "message": err.message });
+      })
+});
 
 app.post('/generate', function(req, res){
   var criteriaId = req.body.criteriaId;

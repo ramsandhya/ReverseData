@@ -3,7 +3,10 @@
   <head>
     <meta charset="utf-8">
     <title>Reverse Data</title>
-    <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="/css/style.css">
   </head>
   <body ng-controller="SliderController">
@@ -29,17 +32,6 @@
 
       </div>
 
-        <div class="row navigation">
-          <div class="col col-xs-9">
-            <ul class="nav nav-pills " >
-              <li role="presentation" ng-class="{active: activetab }"><a href="#/">Home</a></li>
-              <li ng-click="createCriteria()" role="presentation" ng-class="{active: activetab }"><a href="#/edit">Set Criteria</a></li>
-              <li role="presentation" ng-class="{active: activetab }"><a href="#/">About us </a></li>
-              <li role="presentation" ng-class="{active: activetab }"><a href="#/">Contact us</a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="clearfix visible-xs"></div>
         <!-- <h1>Slider Using AngularJS</h1> -->
         <!-- <slider images="images" /> -->
 
