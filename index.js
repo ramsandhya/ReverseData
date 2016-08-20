@@ -309,7 +309,7 @@ function getExpression(type, coordinatesArray) {
 			a: (y1 - y0)/x1,
 			b: y0
 		}
-	} else if (type == "exponential") {
+	} else {
 		return {
 			type: type,
 			a: (y1 - y0)/(Math.pow(Math.E,x1) -1),
