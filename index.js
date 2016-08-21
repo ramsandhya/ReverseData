@@ -368,6 +368,7 @@ app.get('/push', function(req, res) {
   var results;
   SFDCConnection.findOne ({})
   .then(function(sfdcConn) {
+    console.log(sfdcConn);
     // if sfdcConn isn't found
     if (!sfdcConn) {
       var conn = new sf.Connection({ oauth2 : oauth2 });
@@ -387,6 +388,7 @@ app.get('/push', function(req, res) {
           })
           .then(function(sfdcConn){
             results = createOpportunities(accessToken, instanceUrl);
+            console.log(results);
           })
           .catch(function(err){
             console.log(err);
@@ -397,6 +399,7 @@ app.get('/push', function(req, res) {
       });
     } else {
       results = createOpportunities(sfdcConn.accessToken, sfdcConn.instanceUrl);
+      console.log(results);
       res.json({status: "OK", result: results});
     }
   })
